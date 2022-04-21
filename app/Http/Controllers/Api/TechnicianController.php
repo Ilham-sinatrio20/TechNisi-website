@@ -22,6 +22,7 @@ class TechnicianController extends Controller {
         $data = new Technician;
         $data->specialist_id = $request->specialist_id;
         $data->user_id = $request->user_id;
+        $data->desc = $request->desc;
         $data->certification = $request->certification;
         $data->address = $request->address;
         $data->photos = $request->photos;
@@ -35,7 +36,7 @@ class TechnicianController extends Controller {
         // ->with('specialization:id_specialist,category')
         // ->get();
 
-        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'certification', 'address', 'photos')
+        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'desc', 'certification', 'address', 'photos')
         ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
         ->join('users', 'technician.user_id', '=', 'users.id')
         ->get();
@@ -49,7 +50,7 @@ class TechnicianController extends Controller {
         // ->where('technician_id', $id)
         // ->first();
 
-        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'certification', 'address', 'photos',
+        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'desc', 'certification', 'address', 'photos',
             's.id_specialist', 's.category', 'u.id', 'u.name', 'u.email', 'u.phone'
         )
         ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
@@ -83,6 +84,7 @@ class TechnicianController extends Controller {
             $file->move('assets/image/tech', $img_name);
             $tech->photos = $img_name;
         }
+        $tech->desc = $request->desc;
         $tech->certification = $request->certification;
         $tech->address = $request->address;
         $user->name = $req->name;

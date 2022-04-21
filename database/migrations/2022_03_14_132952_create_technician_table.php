@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('technician_id');
             $table->unsignedBigInteger('specialist_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('desc',  255);
             $table->string('certification', 225);
             $table->string('address', 225);
             $table->string('photos', 100)->nullable();

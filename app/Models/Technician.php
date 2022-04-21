@@ -17,6 +17,7 @@ class Technician extends Model {
         'technician_id',
         'specialist_id',
         'user_id',
+        'desc',
         'certification',
         'address',
         'photos',
