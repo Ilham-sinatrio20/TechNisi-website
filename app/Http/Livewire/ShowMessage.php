@@ -38,18 +38,27 @@ class ShowMessage extends Component {
 
     public function mountContent(){
         if(auth()->user()->id_role == 2){
-            $this->message = Message::where('receiver', auth()->user()->id)
+            $this->message = Message::where('sender', $this->sender->id)
+                                            ->orWhere('receiver', $this->sender->id)
                                             ->orderBy('created_at', 'desc')
                                             ->get();
+            // $this->message = Message::where('receiver', auth()->user()->id)
+            //                                 ->orderBy('created_at', 'desc')
+            //                                 ->get();
         } else if(auth()->user()->id_role == 3){
-            $this->message = Message::where('receiver', auth()->user()->id)
+            $this->message = Message::where('sender', $this->sender->id)
+                                            ->orWhere('receiver', $this->sender->id)
                                             ->orderBy('created_at', 'desc')
                                             ->get();
-        } else if(auth()->user()->id_role == 1){
-            $this->message = Message::where('receiver', auth()->user()->id)
-                                            ->orderBy('created_at', 'desc')
-                                            ->get();
+            // $this->message = Message::where('receiver', auth()->user()->id)
+            //                                 ->orderBy('created_at', 'desc')
+            //                                 ->get();
         }
+        // } else if(auth()->user()->id_role == 1){
+        //     $this->message = Message::where('receiver', auth()->user()->id)
+        //                                     ->orderBy('created_at', 'desc')
+        //                                     ->get();
+        // }
         $is_seen = Message::Where('receiver', auth()->user()->id)
                             ->where('receiver', auth()->user()->id)
                             ->get();

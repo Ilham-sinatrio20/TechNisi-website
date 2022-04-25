@@ -43,16 +43,16 @@ class MessageController extends Controller {
 
         $receive = Message::where('msg_id', $id)->first();
 
+        $users = User::select('users.id', 'users.name', 'users.phone', 'm.receiver',
+        'm.msg_id', 'm.msg_content', 'm.created_at', 'm.is_seen', 'msg.sender', 'users.id_role')
+        ->join('message AS m', 'm.receiver', '=', 'id')
+        ->join('message AS msg', 'msg.sender', '=', 'id')
+        ->where('users.id_role', auth()->user()->id_role)
+        ->orderBy('id', 'DESC')->get();
+
         if (auth()->user()->id_role == 2 || auth()->user()->id_role == 3) {
             $message = Message::where('receiver', auth()->id())->orderBy('msg_id', 'DESC')->get();
         }
-
-        $users = User::select('users.id', 'users.name', 'users.phone', 'm.receiver',
-        'm.msg_id', 'm.msg_content', 'm.created_at', 'm.is_seen', 'msg.sender')
-        ->join('message AS m', 'm.receiver', '=', 'id')
-        ->join('message AS msg', 'msg.sender', '=', 'id')
-        ->where('m.msg_id', $id)
-        ->orderBy('id', 'DESC')->get();
 
         return view('livewire.show-message', [
             'message' => $message,

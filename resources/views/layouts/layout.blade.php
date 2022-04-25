@@ -70,19 +70,18 @@
                                         <a href="/" class="nav-item nav-link {{ ($title == 'Home') ? 'active' : '' }}">Home</a>
                                         <a href="about" class="nav-item nav-link {{ ($title == 'About') ? 'active' : '' }}">Tentang</a>
                                         <a href="service" class="nav-item nav-link {{ ($title == 'Service') ? 'active' : '' }}">Servis</a>
+                                        <a href="{{ route('tech.show') }}" class="nav-item nav-link {{ ($title == 'Teknisi') ? 'active' : '' }}">Teknisi</a>
                                     @guest
                                         @if (Route::has('login'))
-
                                             <a href="contact" class="nav-item nav-link {{ ($title == 'Contact') ? 'active' : '' }}">Contact</a>
-                                            <a href="{{ route('tech.show') }}" class="nav-item nav-link">Teknisi</a>
                                             <a href={{ route('login.auth') }} class="nav-item nav-link {{ ($title == 'Login') ? 'active' : '' }}">Login</a>
                                         @endif
                                     @else
                                         <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
-                                        <a href="{{ route('inbox.index') }}" class="nav-item nav-link">Chat</a>
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                                             <div class="dropdown-menu">
+                                                <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                      onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
