@@ -1,0 +1,33 @@
+  *{
+    padding: 0;
+    margin:0;
+  }
+  div .artikel{
+    float: right;
+    width: 350px;
+    padding: 10px;
+    text-align: center;
+  }
+  div.scrollmenu {
+    background-color:#006faa;
+      overflow: auto;
+      width: 230px;
+      height: 425px;
+  }
+ 
+  div.scrollmenu a {
+      display: block;
+      color: white;
+      text-align: left;
+      padding: 14px;
+      text-decoration: none;
+  }
+ 
+  div.scrollmenu a:hover {
+      background-color: salmon;
+ 
+  }
+  div.scrollmenu ul{
+    list-style: none;
+ 
+  }
