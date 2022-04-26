@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\TechnicianRequest;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Specialization;
-class TechnicianController extends Controller {
 
-    public function createTech(TechnicianRequest $request){
+
+class TechnicianController extends Controller
+{
+    public function createTrans(TechnicianRequest $request)
+    {
         $request->validated();
         $tech = new Technician;
         if($request->hasFile('photos')){
-
             $path = 'assets/image/tech'.$tech->photos;
             if(File::exists($path)){
                 File::delete($path);
@@ -29,9 +31,9 @@ class TechnicianController extends Controller {
             $file->move('assets/image/tech', $img_name);
             $tech->photos = $img_name;
         }
-
         $tech->specialist_id = $request->customer_id;
         $tech->user_id = $request->user_id;
+        $tech->desc = $request->desc;
         $tech->certification = $request->certification;
         $tech->address = $request->address;
         $tech->save();
@@ -40,20 +42,37 @@ class TechnicianController extends Controller {
     }
 
     public function showTech($id){
-        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'certification', 'address', 'photos',
-            's.id_specialist', 's.category AS spesialis', 'u.id', 'u.name AS name', 'u.email', 'u.phone AS phone'
+        $tech = Technician::select('technician_id', 'specialist_id', 'user_id', 'technician.desc', 'certification', 'address', 'photos',
+            's.id_specialist', 's.category AS spesialis', 'u.id', 'u.name AS name', 'u.email', 'u.phone AS phone',
         )
         ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
         ->join('users AS u', 'technician.user_id', '=', 'u.id')
+        ->join('transaction AS t', 'technician.technician_id', '=', 't.id_technician')
         ->where('technician_id', $id)
         ->first();
-        return view('teknisi.detail-tech', ['data' => $tech, 'title' => 'Detail Teknisi']);
+
+        $transaction = Transaction::select('trans_id', 'level',
+        'transaction.desc as description', 'price', 'status', 'customer_id', 'id_technician', 'c.cust_id', 'c.user_id',
+        't.technician_id', 't.user_id', 'u.name AS user_name', 'u2.name AS tech_name', 'transaction.created_at AS dates')
+        ->join('customer AS c', 'transaction.customer_id', '=', 'c.cust_id')
+        ->join('technician AS t', 'transaction.id_technician', '=', 't.technician_id')
+        ->join('users AS u', 'c.user_id', '=', 'u.id')
+        ->join('users AS u2', 't.user_id', '=', 'u2.id')
+        ->where('id_technician', $id)
+        ->get();
+
+        return view('teknisi.detail-tech', [
+            'data' => $tech,
+            'no' => 1,
+            'title' => 'Detail Teknisi',
+            'trans' => $transaction,
+        ]);
     }
 
     public function showAll(){
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select('technician_id AS id_tech', 'specialization.category AS category', 'specialist_id', 'users.name AS name', 'user_id',
-        'certification', 'address', 'photos')
+        'desc', 'certification', 'address', 'photos')
         ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
         ->join('users', 'technician.user_id', '=', 'users.id')
         ->orderBy('id_tech', 'asc')
@@ -147,26 +166,6 @@ class TechnicianController extends Controller {
         return response()->json(['message' => 'Succesfully delete data']);
     }
 
-    public function updateTrans(TransactionRequest $request, $id) {
-        $request->validated();
-        $data = Transaction::where('id_technician', $id)->first();
-
-        $data->level = $request->level;
-        $data->desc = $request->desc;
-        $data->price = $request->price;
-        $data->status = $request->status;
-        $data->update();
-        return response()->json(["Message"   => "Transaction has successfully update"]);
-    }
-
-
-    public function ubahData() {
-        return view('ubahdata', [
-            'bidang' => Specialization::all(),
-            'title' => 'Teknisi',
-        ]);
-    }
-
     public function updateTech(TechnicianRequest $request, UserRequest $req, $id){
         $request->validated();
         //$req->validated();
@@ -185,6 +184,7 @@ class TechnicianController extends Controller {
             $file->move('assets/image/tech', $img_name);
             $tech->photos = $img_name;
         }
+        $tech->desc = $request->desc;
         $tech->certification = $request->certification;
         $tech->address = $request->address;
         $user->name = $req->name;
@@ -194,5 +194,6 @@ class TechnicianController extends Controller {
         $tech->save();
         $user->update();
         return response()->json(["Message"   => "Technician has successfully update"]);
+
     }
 }

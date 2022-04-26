@@ -1,8 +1,28 @@
-@extends('layouts.layout')
+@extends('layouts.layoutTeknisi')
 <head>
         <link rel="stylesheet" href="css/ord.css">
+        <link rel="stylesheet" href="css/detailOrder.css">
+        <link rel="stylesheet" href="css/detailOrder2.css">
 </head>
 @section('main-content')
+            <header>
+            <input type="checkbox" id="tag-menu"/>
+            <label class="fa fa-bars menu-bar" for="tag-menu"></label>
+            <div class="jw-drawer">
+                <div class="scrollmenu">
+                    <nav>
+                    <ul>
+                        <li><a href="detailOrder">Order Number :<br>123A<br>Pelanggan :<br>Hendra Kusuma</a></li>
+                        <li><a href="#">Order Number :<br>124A<br>Pelanggan :<br>Anggito Pramono</a></li>
+                        <li><a href="#">Order Number :<br>125A<br>Pelanggan :<br>Nelsya Purwantari</a></li>
+                        <li><a href="#">Order Number :<br>126A<br>Pelanggan :<br>Eka Satriyo</a></li>
+                        <li><a href="#">Order Number :<br>127A<br>Pelanggan :<br>Pangestika Nurahma</a></li>
+                    </ul>
+                    </nav>
+                </div>
+            </div>
+            </header>
+            <div class="content">
                 <div class="container d-flex justify-content-center mt-100 my-3">
                         <div class="modal-content">
                             <div class="modal-body">
@@ -59,5 +79,6 @@
                             </div>
                         </div>
                     </div>
+            </div>
 @endsection
 

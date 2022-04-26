@@ -27,6 +27,7 @@ class TechnicianRequest extends FormRequest {
                 return [
                     'specialist_id' => 'required|integer|exists:specialization,id_specialist',
                     'user_id' => 'required|integer|exists:users,id',
+                    'desc' => 'required|string|max:255',
                     'certification' => 'required|string|max:255',
                     'address' => 'required|string|max:255',
                     'photos' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -34,6 +35,7 @@ class TechnicianRequest extends FormRequest {
             } break;
             case 'PUT': {
                 return [
+                    'desc' => 'sometimes|string|max:255',
                     'certification' => 'sometimes|string|max:255',
                     'address' => 'sometimes|string|max:255',
                     'photos' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

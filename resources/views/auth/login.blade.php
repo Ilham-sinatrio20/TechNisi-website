@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layoutTeknisi')
 @section('main-content')
 
 <body>

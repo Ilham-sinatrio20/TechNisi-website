@@ -1,6 +1,11 @@
 /*******************************/
+
+
 /********* General CSS *********/
+
+
 /*******************************/
+
 body {
     color: #666666;
     background: #ffffff;
@@ -70,8 +75,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********** Header CSS *********/
+
+
 /*******************************/
+
 .header {
     position: relative;
     width: 100%;
@@ -173,11 +183,9 @@ a:focus {
     .header .navbar {
         background: transparent !important;
     }
-
     .header .navbar-brand {
         display: none;
     }
-
     .header .navbar-light a.nav-link,
     .header .navbar-light .show>.nav-link {
         position: relative;
@@ -186,7 +194,6 @@ a:focus {
         font-size: 16px;
         z-index: 1;
     }
-
     .header .navbar-light a.nav-link:hover,
     .header .navbar-light a.nav-link.active {
         color: #FFD662;
@@ -198,30 +205,24 @@ a:focus {
         text-align: center;
         margin-bottom: 15px;
     }
-
     .header .topbar {
         text-align: center;
         margin-bottom: 15px;
     }
-
     .header .topbar .topbar-col {
         margin: 0;
     }
-
     .header .topbar .topbar-social {
         margin-top: 5px;
     }
-
     .header .navbar {
         background: #ffffff !important;
         border: none;
         z-index: 1;
     }
-
     .header a.nav-link {
         padding: 5px 0;
     }
-
     .header .dropdown-menu {
         box-shadow: none;
     }
@@ -254,7 +255,6 @@ a:focus {
     .header .navbar {
         border-radius: 5px;
     }
-
     .header .navbar .btn {
         display: none;
     }
@@ -360,8 +360,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******* Page Header CSS *******/
+
+
 /*******************************/
+
 .page-header {
     position: relative;
     margin-bottom: 45px;
@@ -407,8 +412,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******* Section Header ********/
+
+
 /*******************************/
+
 .section-header {
     position: relative;
     width: 100%;
@@ -470,8 +480,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********** About CSS **********/
+
+
 /*******************************/
+
 .about {
     position: relative;
     width: 100%;
@@ -523,8 +538,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********* Service CSS *********/
+
+
 /*******************************/
+
 .service {
     position: relative;
     width: 100%;
@@ -585,8 +605,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********* Feature CSS *********/
+
+
 /*******************************/
+
 .feature {
     position: relative;
     width: 100%;
@@ -643,8 +668,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /*********** Team CSS **********/
+
+
 /*******************************/
+
 .team {
     position: relative;
     width: 100%;
@@ -749,8 +779,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /*********** FAQs CSS **********/
+
+
 /*******************************/
+
 .faqs {
     position: relative;
     width: 100%;
@@ -858,8 +893,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /****** Pricing Plan CSS *******/
+
+
 /*******************************/
+
 .price {
     position: relative;
     padding: 45px 0 15px 0;
@@ -946,7 +986,6 @@ a:focus {
     border-radius: 0 0 5px 5px;
 }
 
-
 .price .price-action a {
     display: inline-block;
     padding: 10px 25px;
@@ -979,8 +1018,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********** Newsletter *********/
+
+
 /*******************************/
+
 .newsletter {
     position: relative;
     margin: 45px 0;
@@ -1034,8 +1078,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******* Testimonial CSS *******/
+
+
 /*******************************/
+
 .testimonial {
     position: relative;
     padding: 45px 0;
@@ -1110,8 +1159,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /*********** Blog CSS **********/
+
+
 /*******************************/
+
 .blog {
     position: relative;
     width: 100%;
@@ -1190,8 +1244,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******* Call to Action ********/
+
+
 /*******************************/
+
 .call-to-action {
     position: relative;
     margin: 45px 0;
@@ -1239,8 +1298,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********** Story CSS **********/
+
+
 /*******************************/
+
 .story {
     position: relative;
     width: 100%;
@@ -1445,7 +1509,6 @@ a:focus {
     .story .story-continue::before {
         left: 48.5px;
     }
-
     .story .story-end,
     .story .story-start,
     .story .story-year,
@@ -1456,36 +1519,29 @@ a:focus {
     .story .story-launch {
         text-align: left;
     }
-
     .story .story-date {
         padding: 0;
     }
-
     .story .row.story-left .story-date::after,
     .story .row.story-right .story-date::after {
         left: 54.5px;
     }
-
     .story .story-box,
     .story .row.story-right .story-date,
     .story .row.story-left .story-date {
         margin-left: 77px;
     }
-
     .story .story-launch .story-box {
         margin-left: 0;
     }
-
     .story .row.story-left .story-box::after {
         left: -20px;
         border-color: transparent #ffffff transparent transparent;
     }
-
     .story .row.story-left .story-box::before {
         left: -22px;
         border-color: transparent #dddddd transparent transparent;
     }
-
     .story .story-launch .story-box::after,
     .story .story-launch .story-box::before {
         left: 30px;
@@ -1495,8 +1551,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******** Portfolio CSS ********/
+
+
 /*******************************/
+
 .portfolio {
     position: relative;
     padding: 45px 0;
@@ -1649,8 +1710,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /********* Contact CSS *********/
+
+
 /*******************************/
+
 .contact {
     position: relative;
     width: 100%;
@@ -1690,8 +1756,13 @@ a:focus {
 
 
 /*******************************/
+
+
 /******* Single Page CSS *******/
+
+
 /*******************************/
+
 .single {
     position: relative;
     width: 100%;
@@ -1722,11 +1793,15 @@ a:focus {
 
 
 /*******************************/
+
+
 /********* Footer CSS **********/
+
+
 /*******************************/
+
 .footer {
     position: relative;
-
     padding-top: 90px;
     background: #00539C;
     color: #ffffff;
@@ -1788,7 +1863,6 @@ a:focus {
     margin-bottom: 10px;
     font-size: 14px;
     color: #ffffff;
-
 }
 
 .footer .footer-link a::before {
@@ -1857,7 +1931,6 @@ a:focus {
     border-right: none;
 }
 
-
 .footer .copyright {
     padding: 30px 15px;
     border-top: 1px solid rgba(255, 255, 255, .1);
@@ -1882,7 +1955,6 @@ a:focus {
 }
 
 @media (max-width: 768px) {
-
     .footer .copyright p,
     .footer .copyright .col-md-6:last-child p {
         margin: 5px 0;
@@ -1896,7 +1968,6 @@ a:focus {
 
 .form-register .form-control {
     margin-top: 20px;
-
 }
 
 .form-register .form-check {
@@ -1981,28 +2052,23 @@ a:focus {
 }
 
 @media screen and (max-width: 1080px) {
-
     #register .container {
         display: block;
     }
-
     #register .container .col-md-8 {
         width: 100%;
         align-items: center;
         margin-bottom: 20px;
         display: block;
     }
-
     #register .container .col-md-4 {
         width: 100%;
         align-items: center;
         display: block;
     }
-
     #form-ubah-data {
         display: block;
     }
-
     #form-ubah-data .col {
         display: block;
         width: 100%;
