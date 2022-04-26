@@ -51,10 +51,10 @@ class LoginController extends Controller {
         ))){
             if(auth()->user()->id_role == 2){
                 Alert::success('Success', 'Login Sukses');
-                return redirect()->route('inbox.index');
+                return redirect()->route('index.home');
             } else if(auth()->user()->id_role == 3){
                 Alert::success('Success', 'Login Sukses');
-                return redirect()->route('inbox.index');
+                return redirect()->route('index.home');
             }
         } else {
             Alert::error('Error', 'Email atau Password Salah');

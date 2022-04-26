@@ -21,11 +21,15 @@ class MessageIndex extends Component {
     public $admin;
     public $clicked;
     public $file;
+    public $users;
+    public $data;
 
     public function render() {
         return view('livewire.message-index', [
-            'cust' => $this->cust,
+            'data' => $this->data,
+            'users' => $this->users,
             'tech' => $this->tech,
+            'title' => 'Chatting'
         ]);
     }
 

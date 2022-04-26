@@ -18,17 +18,24 @@ class ShowMessage extends Component {
     public $is_seen;
     public $file;
     public $file_name;
+    public $receive;
+    public $users;
 
-    public function __construct() {
-        ini_set('max_execution_time', 150);
-    }
+    // public function __construct() {
+    //     ini_set('max_execution_time', 150);
+    // }
 
     public function render() {
         return view('livewire.show-message', [
-            'cust' => $this->cust,
-            'tech' => $this->tech,
-            'message' => $this->message,
-            'sender' => $this->sender,
+            'data' => $this->message,
+            'sender' => $this->receive,
+            'users' => $this->users,
+            'title' => 'Chatting'
+            // 'cust' => $this->cust,
+            // 'tech' => $this->tech,
+            // 'data' => $this->message,
+            // 'sender' => $this->sender,
+            // 'title' => 'Show Message'
         ]);
     }
 

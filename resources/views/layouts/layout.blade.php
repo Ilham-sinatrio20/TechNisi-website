@@ -2,6 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        @if(Route::is('inbox.show') || Route::is('inbox.index'))
+         <title>TechNisi | Inbox Page</title>
+        @endif
         <title>TechNisi | {{ $title }} Page</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Cleaning Company Website Template" name="keywords">
@@ -24,7 +27,8 @@
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        @livewireStyles
     </head>
 
     <body>
@@ -79,7 +83,7 @@
                                     @else
                                         <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
                                         <div class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }}</a>
                                             <div class="dropdown-menu">
                                                 <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,10 +105,17 @@
             @if(request()->routeIs('index.home'))
                     <div class="hero row align-items-center">
                         <div class="col-md-7">
-                            <h2>Best & Trusted</h2>
-                            <h2><span>Website</span> Service</h2>
-                            <p>Temukan Teknisi Servis Terdekat</p>
-                            <a class="btn" href="">Cari Sekarang</a>
+                            @guest
+                                <h2>Best & Trusted</h2>
+                                <h2><span>Website</span> Service</h2>
+                                <p>Temukan Teknisi Servis Terdekat</p>
+                                <a class="btn" href="">Cari Sekarang</a>
+                            @else
+                                <h2><span>TechNisi</span> Website</h2>
+                                <h2><span>Selamat Datang</span> {{ strtok(Auth::user()->name, " ") }}</h2>
+                                <p>Temukan Teknisi Servis Terdekat</p>
+                                <a class="btn" href="">Cari Sekarang</a>
+                            @endguest
                         </div>
                         <div class="col-md-5">
                             <div class="form">
@@ -236,5 +247,6 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        @livewireScripts
     </body>
 </html>

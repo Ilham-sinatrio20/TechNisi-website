@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['Order', 'Pickup', 'On Service', 'Complete', 'Failed']);
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('id_technician');
+            $table->float('rating')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('cust_id')->on('customer')->cascadeOnDelete();

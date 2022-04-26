@@ -1,9 +1,9 @@
-@extends('layouts.layout')
+{{-- @extends('layouts.layout')
 @section('main-content')
 <head>
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @livewireStyles
-</head>
+</head> --}}
     <div class="container-fluid mx-auto my-3">
         <div class="row justify-content-center" wire:poll="mountContent()">
             @if(auth()->user()->id_role == 2 || auth()->user()->id_role == 3)
@@ -130,5 +130,5 @@
             </div>
         </div>
     </div>
-    @livewireScripts
-@endsection
+    {{-- @livewireScripts
+@endsection --}}

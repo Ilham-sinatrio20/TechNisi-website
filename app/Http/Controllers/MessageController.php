@@ -13,7 +13,7 @@ class MessageController extends Controller {
     }
 
     public function index(){
-        $data = User::select('users.id', 'users.name', 'users.phone', 'm.receiver', 'ussr.name AS senderName', 'ussr.id',
+        $data = User::select('users.id AS id', 'users.name', 'users.phone', 'm.receiver', 'ussr.name AS senderName', 'ussr.id',
         'm.msg_id', 'm.msg_content AS msg_content', 'm.created_at', 'm.is_seen', 'msg.sender')
         ->join('message AS m', 'm.receiver', '=', 'users.id')
         ->join('users AS ussr', 'ussr.id', '=', 'm.sender')
@@ -21,17 +21,17 @@ class MessageController extends Controller {
         ->where('m.receiver', auth()->user()->id)
         ->orderBy('m.created_at', 'DESC')->get();
 
-        $messages = Message::select('u.id', 'u.name AS receive', 'usr.name AS senderName', 'u.phone', 'receiver',
+        $messages = Message::select('u.id AS id', 'u.name AS receive', 'usr.name AS senderName', 'u.phone', 'receiver',
         'msg_id', 'msg_content', 'message.created_at', 'is_seen', 'sender')
         ->join('users AS u', 'receiver', '=', 'u.id')
         ->join('users AS usr', 'sender', '=', 'usr.id')
         ->where('receiver', auth()->id())->orderBy('msg_id', 'DESC')->get();
 
         if(auth()->user()->id_role == 2 || auth()->user()->id_role == 3){
-            return view('livewire.message-index', [
+            return view('message.home-msg', [
                 'data' => $data,
-                'message' => $messages,
-                'title' => 'Message'
+                'message' => $messages ?? null,
+                'title' => 'Chatting'
             ]);
         }
     }
@@ -54,10 +54,11 @@ class MessageController extends Controller {
             $message = Message::where('receiver', auth()->id())->orderBy('msg_id', 'DESC')->get();
         }
 
-        return view('livewire.show-message', [
-            'message' => $message,
+        return view('message.show-msg', [
+            'data' => $message,
             'sender' => $receive,
-            'users' => $users
+            'users' => $users,
+            'title' => 'Chatting'
         ]);
     }
 }
