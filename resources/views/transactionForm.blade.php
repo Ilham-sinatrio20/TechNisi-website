@@ -25,20 +25,6 @@
                                 placeholder="Description">
                         </div>
                         <div class="col-sm-4 mb-3">
-                            <input id="price" type="number"
-                                class="form-control shadow-sm @error('price') is-invalid @enderror" name="price"
-                                value="{{ old('price') }}" required autocomplete="price" autofocus placeholder="Price">
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="form-select" aria-label="Default select example" id="status" name="status">
-                                <option selected>Status</option>
-                                <option value="Order">Order</option>
-                                <option value="Pickup">Pickup</option>
-                                <option value="On Service">On Service</option>
-                                <option value="Complete">Complete</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4 mb-3">
                             <input id="customer_id" type="text"
                                 class="form-control shadow-sm @error('customer_id') is-invalid @enderror"
                                 name="customer_id" value="{{ old('customer_id') }}" required autocomplete="customer_id"
