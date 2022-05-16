@@ -39,7 +39,12 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item completed">
                             <div class="portfolio-wrap">
                                 <figure>
-                                    <img src="img/portfolio-3.jpg" alt="Portfolio Image">
+                                    @if($tech->photos)
+                                        <img class="img-fluid rounded" src="{{ asset('storage/image/tech' . $tech->photos) }}" alt="{{ $tech->category }}">
+                                    @else
+                                        <img class="img-fluid rounded"src="https://source.unsplash.com/800x800?{{ $tech->category }}" alt="{{ $tech->category }}">
+                                    @endif
+                                    {{-- <img src="img/portfolio-3.jpg" alt="Portfolio Image"> --}}
                                     <a href="img/portfolio-3.jpg" class="link-preview" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                     <a href="#" class="link-details"><i class="fa fa-link"></i></a>
                                     <a class="portfolio-title" href="{{ route('tech.detail', $tech->id_tech) }}">{{ $tech->name }}</a>

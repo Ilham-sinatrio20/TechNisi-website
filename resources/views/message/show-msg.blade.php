@@ -6,9 +6,9 @@
 </head>
     <div class="container-fluid">
         <div class="container">
-            @livewire('show-message', [
+            @livewire('show', [
                 'data' => $message,
-                'sender' => $receive,
+                'sender' => $sender,
                 'users' => $users,
                 'title' => 'Chatting'
             ])

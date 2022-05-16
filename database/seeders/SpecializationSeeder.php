@@ -15,10 +15,10 @@ class SpecializationSeeder extends Seeder
      */
     public function run() {
         $specialization = [
-            ['category' => 'Mesin Ringan'],
+            ['category' => 'Mesin'],
             ['category' => 'Software'],
-            ['category' => 'Elektronik Rumah Tangga'],
-            ['category' => 'Perbaikan'],
+            ['category' => 'Elektronik'],
+            ['category' => 'Repair'],
             ['category' => 'Furniture'],
         ];
         DB::table('specialization')->insert($specialization);

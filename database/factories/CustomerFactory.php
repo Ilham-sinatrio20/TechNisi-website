@@ -17,7 +17,7 @@ class CustomerFactory extends Factory {
     public function definition() {
         return [
             'address' => $this->faker->address(),
-            //'photos'  => $this->faker->image('public/assets/image/cust', 400, 300),
+            //'photos'  => $this->faker->image('public/storage/image/cust', 400, 300),
             'user_id' => rand(1, User::count()),
         ];
     }

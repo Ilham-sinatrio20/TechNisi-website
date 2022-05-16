@@ -38,7 +38,11 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <img class="img-fluid rounded" src="{{ asset('img/single.jpg') }}" alt="Image">
+                            @if($data->photos)
+                                <center><img class="img-fluid rounded"src="{{ asset('storage/image/tech' . $data->photos) }}" alt="{{ $tech->category }}"></center>
+                            @else
+                                <center><img class="img-fluid rounded"src="https://source.unsplash.com/300x400?person" alt="{{ $data->spesialis }}"></center>
+                            @endif
                             <h3>Deskripsi</h3>
                             <p>{{ $data->desc }}</p>
                             {{-- <ul class="list-group">

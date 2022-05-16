@@ -91,9 +91,8 @@ Route::prefix('/')->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
-    Route::get('/inbox/{id}', [MessageController::class, 'show'])->name('inbox.show');
+    // Route::get('/inbox/{id}', [MessageController::class, 'show'])->name('inbox.show');
 
-    Route::get('/inbox/{id}', [MessageController::class, 'show', 'title' => 'Message'])->name('inbox.show');
     Route::get('/cdteknisi', [TechnicianController::class, 'ubahdata'])->name('inbox.cdt');
     Route::get('/detailOrder', function () {
         return view(
