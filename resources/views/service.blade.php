@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="service-item">
-                                <img src="img/service-2.jpg" alt="Service">
+                                <img src="img/servis-2.jpg" alt="Service">
                                 <h3>Servis Kulkas</h3>
                                 <p>
                                     Layanan servis berbagai tipe kulkas dan kerusakannya dapat dikerjakan.
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="service-item">
-                                <img src="img/service-4.jpg" alt="Service">
+                                <img src="img/servis-4.jpg" alt="Service">
                                 <h3>Servis TV</h3>
                                 <p>
                                     Layanan servis berbagai jenis TV dan kerusakannya dapat dikerjakan. 
@@ -86,7 +86,7 @@
                         <div class="col-md-7">
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-1.jpg" alt="Feature">
+                                    <img src="img/fitur-1.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Teknisi Ahli</h3>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-2.jpg" alt="Feature">
+                                    <img src="img/fitur-2.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Harga Standard</h3>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-3.jpg" alt="Feature">
+                                    <img src="img/fitur-3.png" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Layanan Cepat & Terbaik</h3>
