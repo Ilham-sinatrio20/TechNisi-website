@@ -89,18 +89,28 @@ class ChatPage extends Component {
     {
         // All variables
         $user = Auth::user()->id;
-
+        $ussr = Auth::user()->id_role;
         $receiver = $this->receiver;
 
         $current = User::find($receiver);
 
+        if($ussr == 1){
+            $get_messages = User::where('id', '!=', $user)->get();
+        } else if($ussr == 2 || $ussr == 3){
+            $users = User::where('id', '!=', $user)->where('id_role', '!=', $ussr)->where('id_role', '!=', 1)->get();
+        }
         // get all users
-        $users = User::where('id', '!=', $user)->get();
+
 
         // get all chats
         $messages = Message::where('thread', $user.'-'.$receiver)->orWhere('thread', $receiver.'-'.$user)->get();
 
         return view('livewire.chat-page', compact('messages', 'users', 'current'));
+        // return view('livewire.chat-page', [
+        //     'messages' => $messages,
+        //     'users' => $users,
+        //     'current' => $current
+        // ]);
     }
 
 }

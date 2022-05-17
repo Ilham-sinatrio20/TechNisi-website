@@ -76,7 +76,7 @@ class TechnicianController extends Controller
         ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
         ->join('users', 'technician.user_id', '=', 'users.id')
         ->orderBy('id_tech', 'asc')
-        ->get();
+        ->paginate(6);
         return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
     }
 
