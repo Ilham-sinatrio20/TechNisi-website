@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\TechnicianRequest;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Specialization;
-
+use Illuminate\Support\Facades\DB;
 
 class TechnicianController extends Controller
 {
@@ -200,6 +200,20 @@ class TechnicianController extends Controller
         return view(
             'teknisis.statistik',
             ['data' => $data]
+        );
+    }
+
+    public function statistik()
+    {
+        $id_user = auth()->user()->id;
+        $id_tech = Technician::where('user_id', '=', $id_user)->first();
+        $data = Transaction::where('id_technician', '=', $id_tech->technician_id)->get();
+        return view(
+            'teknisi.statistik',
+            [
+                'data' => $data,
+                'title' => "Statistik Teknisi"
+            ]
         );
     }
 
