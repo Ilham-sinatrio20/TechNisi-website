@@ -227,7 +227,7 @@
                                 <p>Anda Mungkin Bertanya</p>
                                 <h2>Frequently Asked Questions</h2>
                             </div>
-                            <img src="img/faqs.jpg" alt="Image">
+                            <img src="img/teknis.jpg" alt="Image">
                         </div>
                         <div class="col-md-7">
                             <div id="accordion">

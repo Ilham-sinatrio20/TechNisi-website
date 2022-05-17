@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-6">
                             <div class="about-img">
-                                <img src="img/about.jpg" alt="Image">
+                                <img src="img/tentang.png" alt="Image">
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
@@ -55,7 +55,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="team-item">
                                 <div class="team-img">
-                                    <img src="img/team-7.jpg" alt="Team Image">
+                                    <img src="img/team-10.jpg" alt="Team Image">
                                 </div>
                                 <div class="team-text">
                                     <h2>Muhammad Arief</h2>

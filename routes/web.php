@@ -94,6 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/inbox/{id}', [MessageController::class, 'show'])->name('inbox.show');
 
     Route::get('/cdteknisi', [TechnicianController::class, 'ubahdata'])->name('inbox.cdt');
+    Route::get('/statisiktch', [TechnicianController::class, 'checkOrder'])->name('inbox.statisik');
     Route::get('/detailOrder', function () {
         return view(
             'teknisi.detailOrder',
@@ -103,4 +104,3 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

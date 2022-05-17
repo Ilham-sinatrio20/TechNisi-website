@@ -20,7 +20,6 @@
                     </div>
                     <ul class="social-list">
                         <li><i class="fa fa-facebook"></i></li>
-                        <li><i class="fa fa-dribbble"></i></li>
                         <li><i class="fa fa-instagram"></i></li>
                         <li><i class="fa fa-linkedin"></i></li>
                         <li><i class="fa fa-google"></i></li>
