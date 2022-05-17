@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('message', function (Blueprint $table) {
-            $table->bigIncrements('msg_id');
-            $table->text('msg_content');
-            $table->boolean('is_seen');
+            $table->bigIncrements('id');
+            $table->string('thread')->default('0');
+            $table->text('message');
+            $table->enum('is_seen', ['0', '1'])->default('0');
             $table->string('dir', 225)->nullable();
             $table->string('file', 100)->nullable();
             $table->unsignedBigInteger('sender');

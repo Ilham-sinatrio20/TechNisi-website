@@ -71,7 +71,7 @@
                                         <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Detail Order</a>
                                         <a href="" class="nav-item nav-link">Chat</a>
                                         <a href="" class="nav-item nav-link">Profil</a>
-                                        <a href="" class="nav-item nav-link">Log Out</a>
+                                        <a href="" class="nav-item nav-link">Login</a>
                                     </div>
                                 </div>
                             </div>

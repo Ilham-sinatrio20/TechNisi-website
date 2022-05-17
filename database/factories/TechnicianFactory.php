@@ -24,7 +24,7 @@ class TechnicianFactory extends Factory
             'desc' => $this->faker->text,
             'certification' => $this->faker->sentence(),
             'address' => $this->faker->address(),
-            //'photos'  => $this->faker->image('public/assets/image/tech', 400, 300),
+            //'photos'  => $this->faker->image('public/storage/image/tech', 400, 300),
         ];
     }
 }
