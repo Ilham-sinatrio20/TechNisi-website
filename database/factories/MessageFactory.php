@@ -18,7 +18,7 @@ class MessageFactory extends Factory
     public function definition()
     {
         return [
-            'msg_content' => $this->faker->sentence(),
+            'message' => $this->faker->sentence(),
             'is_seen' => $this->faker->randomElement(['1', '0']),
             'sender' => rand(1, User::count()),
             'receiver' => rand(1, User::count()),

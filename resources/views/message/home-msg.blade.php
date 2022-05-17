@@ -1,7 +1,9 @@
 @extends('layouts.layout')
 
 @section('main-content')
-    @livewire('chat-page')
+    <main class="content">
+        @livewire('chat-page')
+    </main>
 
     <style type="text/css">
         /* body{
@@ -63,7 +65,7 @@
             flex-direction: row-reverse;
             margin-left: auto
         }
-        /* .py-3 {
+        .py-3 {
             padding-top: 1rem!important;
             padding-bottom: 1rem!important;
         }
@@ -80,7 +82,7 @@
 
         .icon {
             font-size: 11px;
-        } */
+        }
     </style>
 
     <script>
@@ -89,7 +91,7 @@
         }
     </script>
 
-    @livewireScripts
+    {{-- @livewireScripts --}}
 
     {{-- @toastr_js
         @toastr_render

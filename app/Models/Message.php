@@ -10,19 +10,21 @@ class Message extends Model {
     use HasFactory;
 
     protected $table = 'Message';
-    protected $primaryKey = 'msg_id';
-    protected $fillable = [
-        'msg_id',
-        'msg_conetnt',
-        'is_seen',
-        'dir',
-        'file',
-        'sender',
-        'receiver',
-        'message',
-        'created_at',
-        'updated_at',
-    ];
+    protected $primaryKey = 'id';
+    // protected $fillable = [
+    //     'id',
+    //     'message',
+    //     'is_seen',
+    //     'dir',
+    //     'file',
+    //     'sender',
+    //     'receiver',
+    //     'message',
+    //     'created_at',
+    //     'updated_at',
+    // ];
+
+    protected $guarded = ['id'];
 
     public function sender(){
         return $this->belongsTo(User::class, 'sender');

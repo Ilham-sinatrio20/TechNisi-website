@@ -98,6 +98,13 @@ class TechnicianController extends Controller
     public function showAll()
     {
         $spec = Specialization::select('id_specialist', 'category')->get();
+        $data = Technician::select('technician_id AS id_tech', 'specialization.category AS category', 'specialist_id', 'users.name AS name', 'user_id',
+        'desc', 'certification', 'address', 'photos')
+        ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
+        ->join('users', 'technician.user_id', '=', 'users.id')
+        ->orderBy('id_tech', 'asc')
+        ->paginate(6);
+
         $data = Technician::select(
             'technician_id AS id_tech',
             'specialization.category AS category',
@@ -113,6 +120,7 @@ class TechnicianController extends Controller
             ->join('users', 'technician.user_id', '=', 'users.id')
             ->orderBy('id_tech', 'asc')
             ->get();
+
         return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
     }
 

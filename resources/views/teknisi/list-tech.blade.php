@@ -29,7 +29,7 @@
                             <ul id="portfolio-flters">
                                     <li data-filter="*" class="filter-active">Semua</li>
                                 @foreach ($spec as $category)
-                                    <li>{{ $category->category }}</li>
+                                    <li value="{{ $category->category }}">{{ $category->category }}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -53,11 +53,14 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="row">
+                     <div class="d-flex justify-content-end">
+                        {{ $data->links() }}
+                    </div>
+                    {{-- <div class="row">
                         <div class="col-12 load-more">
                             <a class="btn" href="#">Load More</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 @endsection

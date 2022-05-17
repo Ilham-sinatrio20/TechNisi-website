@@ -14,29 +14,23 @@
 					<li type="button" wire:click="startChat({{ $item->id }})" class="chat-members list-group-item list-group-item-action border-0">
                         @php
                         // get notifcations/un read messages
-                        $notifications = App\Models\Message::where('is_seen', '0')->where('sender', $item->id)
-                        // ->join('users as u', 'message.receiver', '=', 'u.id')
-                        // ->whereNot('id_role', Auth::user()->id_role)
-                        ->get();
+                        $notifications = App\Models\Message::where('is_seen', '0')->where('sender', $item->id)->get();
                         @endphp
-
 						<div class="d-flex align-items-start">
 							<img src="https://source.unsplash.com/40x40?person" class="rounded-circle mr-1" alt="{{ $item->name }}" width="40" height="40">
 							{{-- <img class="img-fluid rounded"src="https://source.unsplash.com/300x400?person" alt="{{ $data->spesialis }}"> --}}
                             <div class="flex-grow-1 ml-3">
 								<strong style="text-transform:capitalize">{{ $item->name }}
                                     @if ($notifications->count() > 0)
-                                    <small><span class="badge badge-danger text-light float-right mt-2">{{ $notifications->count() }}</span></small>
+                                        <small><span class="badge badge-danger text-light float-right mt-2">{{ $notifications->count() }}</span></small>
                                     @endif
                                 </strong>
                                 @if (Cache::has('is_online' . $item->id))
-                                <div class="small"><span class="fa fa-circle chat-online"></span> Online</div>
+                                    <div class="small"><span class="fa fa-circle chat-online"></span> Online</div>
                                 @else
-                                <div class="small">Last seen: {{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</div>
+                                    <div class="small">Last seen: {{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</div>
                                 @endif
-
 							</div>
-
 						</div>
 					</li>
                     @endforeach
@@ -49,40 +43,35 @@
 							<div class="position-relative">
 								<img src="https://source.unsplash.com/40x40?person" class="rounded-circle mr-1" alt="{{ $current->name }}" width="40" height="40">
 							</div>
-
 							<div class="flex-grow-1 pl-3">
                                 <div class="row" style="width: 50%">
                                     <div class="col-10">
-                                        <strong style="text-transform: capitalize">{{ $current->name }}</strong>
+                                        <strong style="text-transform: capitalize">{{ strtok($current->name, " ") }}</strong>
                                         @if (Cache::has('is_online' . $current->id))
                                         <div class="text-muted small"><i class="fa fa-circle chat-online"></i> <small>Online</small></div>
                                         @else
                                         <div class="text-muted small"><i class="fa fa-circle chat-offline"></i> <small>Last seen: {{ \Carbon\Carbon::parse($current->last_seen)->diffForHumans() }} </div>
                                         @endif
                                     </div>
-                                    <span class="btn-group-vertical">
+                                    {{-- <span class="btn-group-vertical">
                                         <i wire:click="viewProfile({{ $current->id }})" title="View profile" class="btn btn-sm text-dark btn-outline-light fa fa-eye"></i>
                                         @if ($current->friends == null)
                                         <i wire:click="addFriend({{ $current->id }})" title="Add to friends" class="btn btn-sm text-dark btn-outline-light fa fa-plus"></i>
                                         @else
                                         <i wire:click="removeFriend({{ $current->id }})" title="Remove to friends" class="btn btn-sm text-success btn-outline-light fa fa-check"></i>
                                         @endif
-                                    </span>
+                                    </span> --}}
                                 </div>
-
-
-
 							</div>
 							<div>
                                 <button wire:click="clearChats" onclick="confirm('Are you sure of clearing chats?')" class="btn btn-light border px-3" title="Clear Chats"><span class="fa fa-trash"></span></button>
-								<button class="btn btn-light border px-3" title="Friends"><spanc class="fa fa-users"></span></button>
+								{{-- <button class="btn btn-light border px-3" title="Friends"><spanc class="fa fa-users"></span></button>
                                 <button class="btn btn-light border mr-1 px-3" title="Favorites"><span class="fa fa-star text-warning"></span></button>
-								<button class="btn btn-light border mr-1 px-3 d-none d-md-inline-block" title="S"><span class="fa fa-cog"></span></button>
-								<a wire:click="logout" class="btn btn-light border px-3" title="Logout"><span class="fa fa-sign-out"></span></a>
+								<button class="btn btn-light border mr-1 px-3 d-none d-md-inline-block" title="S"><span class="fa fa-cog"></span></button> --}}
+								{{-- <a wire:click="logout" class="btn btn-light border px-3" title="Logout"><span class="fa fa-sign-out"></span></a> --}}
 							</div>
 						</div>
 					</div>
-
 					<div class="position-relative">
 						<div class="chat-messages p-4" id="content_to_scroll">
                             @if ($messages->count())
@@ -138,11 +127,10 @@
                             @endif
 						</div>
 					</div>
-
 					<div class="flex-grow-0 py-3 px-4 border-top">
 						<form wire:submit.prevent="sendChat">
                             <div class="input-group">
-                                <input type="hidden" value="{{ $receiver }}" wire:model.defer="receiver_id">
+                                <input type="hidden" value="{{ $receiver }}" wire:model.defer="receiver">
                                 <input onfocus="myFunction()" autofocus type="text" class="form-control @error('message') is-invalid @enderror" wire:model.defer="message" placeholder="Type your message">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-send"></i></span>
@@ -172,8 +160,8 @@
 					</div>
                     @endif
 				</div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
