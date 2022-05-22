@@ -37,7 +37,7 @@
                         <h2>{{ $data->name }}</h2>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-lg-12">
                             @if($data->photos)
                                 <center><img class="img-fluid rounded"src="{{ asset('storage/image/tech' . $data->photos) }}" alt="{{ $tech->category }}"></center>
                             @else
@@ -52,7 +52,7 @@
                             </ul> --}}
 
                             <h3 class="mb-3">Riwayat Transaksi</h3>
-                            <table class="table table-bordered mb-5">
+                            <table class="table table-bordered mb-4">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -72,8 +72,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-11">
                             <a href="{{ route('create.trans') }}" class="btn btn-success d-block">Pesan Sekarang</a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="{{ route('inbox.index') }}" wire:click="startChat({{ $data->id }})"><i class="fa fa-phone-square fa-3x" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

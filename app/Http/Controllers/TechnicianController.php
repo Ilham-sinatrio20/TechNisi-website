@@ -14,8 +14,7 @@ use App\Http\Requests\TransactionRequest;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 
-class TechnicianController extends Controller
-{
+class TechnicianController extends Controller {
     public function createTrans(TechnicianRequest $request)
     {
         $request->validated();
@@ -95,8 +94,7 @@ class TechnicianController extends Controller
         ]);
     }
 
-    public function showAll()
-    {
+    public function showAll() {
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select('technician_id AS id_tech', 'specialization.category AS category', 'specialist_id', 'users.name AS name', 'user_id',
         'desc', 'certification', 'address', 'photos')
@@ -105,46 +103,10 @@ class TechnicianController extends Controller
         ->orderBy('id_tech', 'asc')
         ->paginate(6);
 
-        $data = Technician::select(
-            'technician_id AS id_tech',
-            'specialization.category AS category',
-            'specialist_id',
-            'users.name AS name',
-            'user_id',
-            'desc',
-            'certification',
-            'address',
-            'photos'
-        )
-            ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
-            ->join('users', 'technician.user_id', '=', 'users.id')
-            ->orderBy('id_tech', 'asc')
-            ->get();
-
         return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
     }
 
-    // public function showAll() {
-    //     $data = Transaction::select(
-    //         'trans_id', 'level', 'desc',
-    //         'price', 'status', 'customer_id', 'id_technician',
-    //         'c.cust_id', 'c.user_id', 't.technician_id',
-    //         't.user_id', 'u.name AS user_name', 'u2.name AS tech_name')
-    //     ->join('customer AS c', 'transaction.customer_id', '=', 'c.cust_id')
-    //     ->join('technician AS t', 'transaction.id_technician', '=', 't.technician_id')
-    //     ->join('users AS u', 'c.user_id', '=', 'u.id')
-    //     ->join('users AS u2', 't.user_id', '=', 'u2.id')
-    //     ->orderBy()
-    //     ->get();
-
-    //     // ->with('customer:cust_id,user_id')
-    //     // ->with('technician:technician_id,user_id')
-
-    //     return response()->json(['data' => $data]);
-    // }
-
-    public function showTrans($id)
-    {
+    public function showTrans($id) {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -166,17 +128,10 @@ class TechnicianController extends Controller
             ->join('users AS u2', 't.user_id', '=', 'u2.id')
             ->where('trans_id', $id)->first();
 
-        // $data = Transaction::select('trans_id', 'level',
-        // 'desc', 'price', 'status', 'customer_id', 'id_technician')
-        // ->with('customer:cust_id,user_id')
-        // ->with('technician:technician_id,user_id')
-        // ->where('trans_id', $id)->first();
-
         return response()->json(['data' => $data]);
     }
 
-    public function checkOrder($id)
-    {
+    public function checkOrder($id) {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -198,13 +153,6 @@ class TechnicianController extends Controller
             ->join('users AS u2', 't.user_id', '=', 'u2.id')
             ->where('id_technician', $id)->get();
 
-        // $data = Transaction::select('trans_id', 'level',
-        // 'desc', 'price', 'status', 'customer_id', 'id_technician')
-        // ->with('customer:cust_id,user_id')
-        // ->with('technician:technician_id,user_id')
-        // ->where('trans_id', $id)->first();
-
-        // return response()->json(['data' => $data]);
         return view(
             'teknisis.statistik',
             ['data' => $data]
@@ -225,14 +173,12 @@ class TechnicianController extends Controller
         );
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $cust = Transaction::where('trans_id', '=', $id)->delete();
         return response()->json(['message' => 'Succesfully delete data']);
     }
 
-    public function updateTech(TechnicianRequest $request, UserRequest $req, $id)
-    {
+    public function updateTech(TechnicianRequest $request, UserRequest $req, $id) {
         $request->validated();
         //$req->validated();
         $tech = Technician::where('technician_id', $id)->first();
@@ -262,3 +208,37 @@ class TechnicianController extends Controller
         return response()->json(["Message"   => "Technician has successfully update"]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+        // $data = Technician::select(
+        //     'technician_id AS id_tech',
+        //     'specialization.category AS category',
+        //     'specialist_id',
+        //     'users.name AS name',
+        //     'user_id',
+        //     'desc',
+        //     'certification',
+        //     'address',
+        //     'photos'
+        // )
+        //     ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
+        //     ->join('users', 'technician.user_id', '=', 'users.id')
+        //     ->orderBy('id_tech', 'asc')
+        //     ->get();
+*/

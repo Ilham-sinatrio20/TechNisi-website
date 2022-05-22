@@ -57,6 +57,16 @@ class CustomerController extends Controller {
         return response()->json(['cust' => $cust]);
     }
 
+    public function edit($username){
+        $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name', 'u.email', 'u.phone', 'u.username')
+        ->join('users AS u', 'customer.user_id', '=', 'u.id')
+        ->where('u.username', $username)->first();
+        return view('customer.edit', [
+            'title' => 'Edit Profile',
+            'cust' => $cust
+        ]);
+    }
+
     public function showCust($id){
         $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name', 'u.email', 'u.phone', 'u.username')
         ->join('users AS u', 'customer.user_id', '=', 'u.id')
@@ -96,16 +106,7 @@ class CustomerController extends Controller {
         $user->phone = $req->phone;
         $cust->save();
         $user->update();
-        return response()->json([
-            "Message"   => "Customer has successfully update",
-            "user_id" => $cust->user_id,
-            "users_id" => $user->id,
-            "name" => $req->name,
-            "email" => $req->email,
-            "username" => $req->username,
-            "phone" => $req->phone,
-            "address"   => $request->address,
-            "photos"    => $request->photos
-        ]);
+
+        return redirect()->view('edit', ['cust' => $cust, 'user' => $user]);
     }
 }

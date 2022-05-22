@@ -49,7 +49,7 @@
                         <div class="col-lg-9">
                             <div class="topbar">
                                 <div class="topbar-col">
-                                    <a href="tel:+012 345 67890"><i class="fa fa-phone-alt"></i>+012 345 67890</a>
+                                    <a href="tel:+012 345 67890"><i class="fa fa-phone"></i>+012 345 67890</a>
                                 </div>
                                 <div class="topbar-col">
                                     <a href="mailto:info@example.com"><i class="fa fa-envelope"></i>technisi@gmail.com</a>
@@ -87,6 +87,7 @@
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }}</a>
                                             <div class="dropdown-menu">
                                                 <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
+                                                <a href="{{ route('cust.edit', Auth::user()->username) }}" class="dropdown-item">Settings</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                      onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
