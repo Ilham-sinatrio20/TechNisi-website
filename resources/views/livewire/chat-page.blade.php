@@ -2,7 +2,7 @@
     <div class="container p-0 my-3">
         <div class="card">
             <div class="row g-0">
-                <div class="col-12 col-lg-5 col-xl-3 border-right">
+                <div class="col-12 col-lg-5 col-xl-3 border-right scrollmenu">
 					<div class="px-4 d-none d-md-block">
 						<div class="d-flex align-items-center">
 							<div class="flex-grow-1">

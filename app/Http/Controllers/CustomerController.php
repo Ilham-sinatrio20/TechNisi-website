@@ -58,10 +58,10 @@ class CustomerController extends Controller {
     }
 
     public function edit($username){
-        $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name', 'u.email', 'u.phone', 'u.username')
+        $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username')
         ->join('users AS u', 'customer.user_id', '=', 'u.id')
         ->where('u.username', $username)->first();
-        return view('customer.edit', [
+        return view('edit', [
             'title' => 'Edit Profile',
             'cust' => $cust
         ]);

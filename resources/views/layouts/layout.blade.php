@@ -111,12 +111,12 @@
                                 <h2>Best & Trusted</h2>
                                 <h2><span>Website</span> Service</h2>
                                 <p>Temukan Teknisi Servis Terdekat</p>
-                                <a class="btn" href="">Cari Sekarang</a>
+                                <a class="btn" href="{{ route('tech.show') }}">Cari Sekarang</a>
                             @else
                                 <h2><span>TechNisi</span> Website</h2>
                                 <h2><span>Selamat Datang</span> {{ strtok(Auth::user()->name, " ") }}</h2>
                                 <p>Temukan Teknisi Servis Terdekat</p>
-                                <a class="btn" href="">Cari Sekarang</a>
+                                <a class="btn" href="{{ route('tech.show') }}">Cari Sekarang</a>
                             @endguest
                         </div>
                         <div class="col-md-5">
