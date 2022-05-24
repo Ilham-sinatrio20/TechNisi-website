@@ -11,7 +11,7 @@ body {
 
 header {
 	width:100%;
-	background-color:#006faa ;
+	background-color: #00539C;
 	z-index:1000;
 }
 
@@ -43,8 +43,8 @@ header {
 .jw-drawer {
 	position:absolute;
 	left:-280px;
-	background-color:#006faa;
-	height: 425px;;
+	background-color: #00539C;
+	height: 1118px;
 	z-index:100;
 	width:230px;
 	animation: slide-out 0.5s ease;
@@ -86,5 +86,5 @@ header {
 
 
 .content{
-  padding: 0px 0 0 225px;
+  padding: 0px 0 0 230px;
 }
