@@ -8,11 +8,13 @@ use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomerRequest;
-use App\Http\Requests\TransactionRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\CustomerRequest;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\TransactionRequest;
 
 class CustomerController extends Controller {
     public function createCust(CustomerRequest $request){
@@ -58,12 +60,13 @@ class CustomerController extends Controller {
     }
 
     public function edit($username){
-        $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username')
+        $cust = Customer::select('photos', 'cust_id', 'address', 'user_id', 'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username', 'r.name AS role_name', 'u.id_role AS role_id')
         ->join('users AS u', 'customer.user_id', '=', 'u.id')
+        ->join('role AS r', 'u.id_role', '=', 'r.id')
         ->where('u.username', $username)->first();
         return view('edit', [
             'title' => 'Edit Profile',
-            'cust' => $cust
+            'users' => $cust
         ]);
     }
 
@@ -81,32 +84,40 @@ class CustomerController extends Controller {
         return response()->json(['message' => 'Succesfully delete data']);
     }
 
-    public function updateCust(CustomerRequest $request, UserRequest $req, $id){
+    public function updateCust(CustomerRequest $request, UserRequest $req, $username){
         $request->validated();
         //$req->validated();
-        $cust = Customer::where('cust_id', $id)->first();
-        $id_ = $cust->user_id;
-        $user = User::select('id', 'name', 'email', 'username', 'phone')->where('id', $cust->user_id)->first();
+        $user = User::select('id', 'name', 'email', 'username', 'phone')->where('username', $username)->first();
+        $id_ = $user->id;
+        $cust = Customer::where('cust_id', $id_)->first();
 
-        if($request->hasFile('photos')){
-            $path = 'assets/image/cust'.$cust->photos;
-            if(File::exists($path)){
-                File::delete($path);
+
+
+        if($request->file('photos')){
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
             }
-            $file = $request->file('photos');
-            $ext = $file->getClientOriginalExtension();
-            $img_name = time().'.'.$ext;
-            $file->move('assets/image/cust', $img_name);
-            $cust->photos = $img_name;
+            $cust['photos'] = $request->file('photos')->store('cust-images');
         }
+        // if($request->hasFile('photos')){
+        //     $path = 'assets/image/cust'.$cust->photos;
+        //     if(File::exists($path)){
+        //         File::delete($path);
+        //     }
+        //     $file = $request->file('photos');
+        //     $ext = $file->getClientOriginalExtension();
+        //     $img_name = time().'.'.$ext;
+        //     $file->move('assets/image/cust', $img_name);
+        //     $cust->photos = $img_name;
+        // }
         $cust->address = $request->address;
         $user->name = $req->name;
         $user->email = $req->email;
         $user->username = $req->username;
         $user->phone = $req->phone;
-        $cust->save();
+        $cust->update();
         $user->update();
-
-        return redirect()->view('edit', ['cust' => $cust, 'user' => $user]);
+        Alert::success('Success', 'Update Customer Sukses');
+        return redirect()->route('cust.edit');
     }
 }

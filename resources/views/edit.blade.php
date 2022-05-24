@@ -65,13 +65,20 @@
     }
 
 </style>
+<form action="{{ route('cust.update', Auth::user()->username) }}" method="POST" enctype="multipart/form-data">
+        @method('PUT')
+        @csrf
         <div class="profile-pic my-3">
             <label class="-label" for="file">
                 <span class="glyphicon glyphicon-camera"></span>
                 <span>Change Image</span>
             </label>
-            <input id="file" type="file" onchange="loadFile(event)"/>
-            <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg" id="output" width="200" />
+            <input id="file" type="file" name="photos" onchange="loadFile(event)"/>
+            @if($users->photos)
+                <img src="{{ asset('storage/image/tech' . $users->photos) }}" id="output" width="200" />
+            @else
+                <img src="https://source.unsplash.com/200x200?person" id="output" width="200" />
+            @endif
         </div>
 <div id="user" class="container profile">
     <div class="row mt-2">
@@ -83,64 +90,59 @@
                 <li class="nav-item">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="false">Address</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">Links</a>
-                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <table class="table table-hover table-sm table-properties">
-                        <tr>
-                            <th>sub</th>
-                            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20rem;"></td>
-                        </tr>
-                        <tr>
-                            <th>Name</th>
-                            <td><input type="text" class="text-decoration-none border-0" name="name" value="{{ $cust->name }}"></td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td><input type="email" class="text-decoration-none border-0" name="email" value="{{ $cust->email }}"></td>
-                        </tr>
-                        <tr>
-                            <th>Username</th>
-                            <td><input type="text" class="text-decoration-none border-0" name="username" value="{{ $cust->username }}"></td>
-                        </tr>
-                        <tr>
-                            <th>Address</th>
-                            <td><input type="text" class="text-decoration-none border-0" name="address" value="{{ $cust->address }}"></td>
-                        </tr>
-                        <tr>
-                            <th>gender</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>birthdate</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>locale</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>zoneinfo</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>given name</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>middle name</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>family name</th>
-                            <td></td>
-                        </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td><input type="text" class="text-decoration-none border-0 @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $users->name) }}"></td>
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td><input type="email" class="text-decoration-none border-0 @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $users->email) }}"></td>
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <th>Username</th>
+                                <td><input type="text" class="text-decoration-none border-0 @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username', $users->username) }}"></td>
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td><input type="text" class="text-decoration-none border-0 w-100 @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $users->address) }}"></td>
+                                @error('address')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td><input type="tel" class="text-decoration-none border-0 w-100 @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $users->phone) }}"></td>
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </tr>
+                            {{-- <tr>
+                                <th>Role</th>
+                                <td><input type="tel" class="text-decoration-none border-0 w-100" name="role" value="{{ $users->role_name }}"></td>
+                            </tr> --}}
                     </table>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -163,60 +165,6 @@
                         </tr>
                     </table>
                 </div>
-
-                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                    <table class="table table-hover table-sm table-properties">
-                        <tr>
-                            <th>country</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>postal code</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>locality</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>region</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>street address</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>formatted</th>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab">
-                    <table class="table table-hover table-sm table-properties">
-                        <tr>
-                            <th></th>
-                            <td><a></a></td>
-                        </tr>
-                        <tr>
-                            <th>me</th>
-                            <td><a></a></td>
-                        </tr>
-                        <tr>
-                            <th>website</th>
-                            <td><a></a></td>
-                        </tr>
-                        <tr>
-                            <th>profile</th>
-                            <td><a></a></td>
-                        </tr>
-                        <tr>
-                            <th>webmail</th>
-                            <td><a></a></td>
-                        </tr>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
@@ -224,9 +172,9 @@
         <div class="col-lg-12">
             <button type="submit" class="btn btn-success d-block w-100">Save</button>
         </div>
+        </form>
     </div>
 </div>
-
 
 <script>
     var loadFile = function (event) {

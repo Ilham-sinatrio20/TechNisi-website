@@ -101,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('cust/edit/{username}', [CustomerController::class, 'edit'])->name('cust.edit');
+    Route::get('/cust/edit/{username}', [CustomerController::class, 'edit'])->name('cust.edit');
 
-    Route::post('cust/edit/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
+    Route::put('/cust/edit/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
 });
