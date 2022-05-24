@@ -79,9 +79,9 @@ Route::prefix('/')->group(function () {
         ]);
     });
 
-    Route::get('notif-user', function () {
-        return view('notif-user', [
-            'title' => 'notif-user'
+    Route::get('notifikasi', function () {
+        return view('notifikasi', [
+            'title' => 'Notifikasi'
         ]);
     });
 

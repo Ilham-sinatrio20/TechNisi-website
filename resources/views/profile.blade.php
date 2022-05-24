@@ -14,7 +14,8 @@
             <div class="card p-3 py-4">
                 <div class="text-center"> <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle"> </div>
                 <div class="text-center mt-3"> 
-                    <h5 class="mt-2 mb-0">Bambang</h5> <span>Teknisi Laptop</span>
+                    <h5 class="mt-3 mb-2">Bambang Setiawan</h5> 
+                    <span>Teknisi Laptop</span>
                     <div class="px-4 mt-1">
                         <p class="fonts">Layanan servis berbagai jenis laptop dan kerusakannya dapat dikerjakan. Memiliki sertifikat khusus dalam bidang Teknisi Laptop. </p>
                     </div>
