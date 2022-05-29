@@ -1,10 +1,11 @@
-@extends('layouts.layoutTeknisi')
+@extends('layouts.layout')
 <head>
         <link rel="stylesheet" href="css/ord.css">
         <link rel="stylesheet" href="css/detailOrder.css">
         <link rel="stylesheet" href="css/detailOrder2.css">
 </head>
 @section('main-content')
+            {{-- @include('layouts.sidebar') --}}
             <header>
             <input type="checkbox" id="tag-menu"/>
             <label class="fa fa-bars menu-bar" for="tag-menu"></label>
@@ -81,4 +82,3 @@
                     </div>
             </div>
 @endsection
-

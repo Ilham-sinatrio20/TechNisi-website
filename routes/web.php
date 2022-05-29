@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\TechnicianController;
+use App\Models\User;
+use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TechnicianController;
+use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
 
 
 /*
@@ -24,13 +27,12 @@ Auth::routes();
 Route::get('/indexTeknisi', function () {
     return view('teknisi.technician');
 })->name('teknisi.index');
-// });
+
 
 Route::prefix('/')->group(function () {
     Route::get('login-page', function () {
         return view('auth.login', ['title' => 'Login']);
     })->name('login.auth');
-
 
     Route::get('register-page', function () {
         return view('auth.register', ['title' => 'Register']);
@@ -77,24 +79,19 @@ Route::prefix('/')->group(function () {
         ]);
     });
 
-    Route::get('notif-user', function () {
-        return view('notif-user', [
-            'title' => 'notif-user'
+    Route::get('notifikasi', function () {
+        return view('notifikasi', [
+            'title' => 'Notifikasi'
         ]);
     });
 
-    // Route::get('/tech', [ApiTechnicianController::class, 'showAll'])->name('tech.show');
     Route::get('/tech', [TechnicianController::class, 'showAll'])->name('tech.show');
     Route::get('/tech/{id_tech}', [TechnicianController::class, 'showTech'])->name('tech.detail');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
-    // Route::get('/inbox/{id}', [MessageController::class, 'show'])->name('inbox.show');
-
-    Route::get('/cdteknisi', [TechnicianController::class, 'ubahdata'])->name('inbox.cdt');
-    Route::get('/statisiktch', [TechnicianController::class, 'statistik'])->name('inbox.statisik');
+    Route::get('/statisik', [TechnicianController::class, 'statistik'])->name('statisik');
     Route::get('/detailOrder', function () {
         return view(
             'teknisi.detailOrder',
@@ -103,4 +100,8 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('teknisi.detailOrder');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/cust/edit/{username}', [CustomerController::class, 'edit'])->name('cust.edit');
+
+    Route::put('/cust/edit/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
+});

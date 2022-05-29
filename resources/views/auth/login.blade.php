@@ -1,6 +1,5 @@
-@extends('layouts.layoutTeknisi')
+@extends('layouts.layout')
 @section('main-content')
-
 <body>
     <div class="header home">
         <div class="container-fluid">
