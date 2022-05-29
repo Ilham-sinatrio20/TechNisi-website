@@ -98,12 +98,21 @@ class TechnicianController extends Controller
     public function showAll()
     {
         $spec = Specialization::select('id_specialist', 'category')->get();
-        $data = Technician::select('technician_id AS id_tech', 'specialization.category AS category', 'specialist_id', 'users.name AS name', 'user_id',
-        'desc', 'certification', 'address', 'photos')
-        ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
-        ->join('users', 'technician.user_id', '=', 'users.id')
-        ->orderBy('id_tech', 'asc')
-        ->paginate(6);
+        $data = Technician::select(
+            'technician_id AS id_tech',
+            'specialization.category AS category',
+            'specialist_id',
+            'users.name AS name',
+            'user_id',
+            'desc',
+            'certification',
+            'address',
+            'photos'
+        )
+            ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
+            ->join('users', 'technician.user_id', '=', 'users.id')
+            ->orderBy('id_tech', 'asc')
+            ->paginate(6);
 
         $data = Technician::select(
             'technician_id AS id_tech',
@@ -215,12 +224,21 @@ class TechnicianController extends Controller
     {
         $id_user = auth()->user()->id;
         $id_tech = Technician::where('user_id', '=', $id_user)->first();
-        $data = Transaction::where('id_technician', '=', $id_tech->technician_id)->get();
+        $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
+        $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
+        $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
+        $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
+        dd($data)
+        $count = 0;
         return view(
             'teknisi.statistik',
             [
-                'data' => $data,
-                'title' => "Statistik Teknisi"
+                'dataseluruh' => $dataseluruh,
+                'levelringan' => $dataringan,
+                'levelsedang' => $datasedang,
+                'levelberat' => $databerat,
+                'total' => $count,
+                'title' => "Statistik Teknisi",
             ]
         );
     }
@@ -234,7 +252,6 @@ class TechnicianController extends Controller
     public function updateTech(TechnicianRequest $request, UserRequest $req, $id)
     {
         $request->validated();
-        //$req->validated();
         $tech = Technician::where('technician_id', $id)->first();
         $id_ = $tech->user_id;
         $user = User::select('id', 'name', 'email', 'username', 'phone')->where('id', $tech->user_id)->first();
