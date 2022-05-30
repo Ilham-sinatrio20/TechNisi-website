@@ -5,31 +5,25 @@
         <div class="hero row align-items-center">
             <div class="d-flex justify-content-center" id="form-ubah-data">
                 <div class="col text-center">
-                    <img src="/assets/image/kucingkecil.jpg" alt="" class="rounded mx-auto d-block img-fluid mb-3 mt-3"
+                    <img src="/assets/image/kucingkecil.jpg" alt="" class="rounded mx-auto d-block img-fluid mb-4 mt-3"
                         style="width: 50%; height: 50%">
-                    <button type="submit" name="submit" class="btn btn-success shadow-sm border-0">Ubah Foto</button>
+                    <button type="submit" name="submit" class="btn btn-success shadow-sm border-0">Edit Profil</button>
                 </div>
-                <div class="col">
-                    <form action="" class="input-form">
-                        <input class="form-control shadow-sm" name="email" id="email" type="text" placeholder="Email"
-                            required>
-                        <input class="form-control shadow-sm" name="password" id="password" type="text"
-                            placeholder="Password" required>
-                        <input class="form-control shadow-sm" name="address" id="address" type="text"
-                            placeholder="Alamat" required>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Bidang Keahlian</option>
-                            @foreach($bidang as $b)
-                            <option value="{{ $b->id_specialist }}">{{ $b->category }}</option>
-                            @endforeach
-                        </select>
-                        <div class="col custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile04">
-                            <label class="custom-file-label" for="inputGroupFile04">Sertifikat</label>
-                        </div>
-                        <button type="submit" class="btn btn-success shadow-sm border-0">Ubah Data
-                        </button>
-                    </form>
+                <div class="col text-white">
+                    <label for="email" class="mt-2">Email address</label>
+                    <input class="form-control shadow-sm" name="email" id="email" type="text" placeholder="Email"
+                        required value={{ $data ->
+                    email}} disabled>
+                    <label for="username" class="mt-2">Username</label>
+                    <input class="form-control shadow-sm" name="username" id="username" type="text"
+                        placeholder="username" required value={{ $data -> username}} disabled>
+                    <label for="phone" class="mt-2">Phone</label>
+                    <input class="form-control shadow-sm" name="phone" id="phone" type="text" placeholder="phone"
+                        required value={{ $data ->
+                    phone}} disabled>
+                    <label for="role" class="mt-2">Status</label>
+                    <input class="form-control shadow-sm" name="role" id="role" type="text" placeholder="role" required
+                        value={{ $status }} disabled>
                 </div>
             </div>
         </div>

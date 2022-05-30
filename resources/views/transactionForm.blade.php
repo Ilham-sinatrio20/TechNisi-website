@@ -28,13 +28,13 @@
                             <input id="customer_id" type="text"
                                 class="form-control shadow-sm @error('customer_id') is-invalid @enderror"
                                 name="customer_id" value="{{ old('customer_id') }}" required autocomplete="customer_id"
-                                autofocus placeholder="Customer Id" disabled>
+                                autofocus placeholder="Customer Id">
                         </div>
                         <div class="col-sm-4">
                             <input id="id_technician" type="text"
                                 class="form-control shadow-sm @error('id_technician') is-invalid @enderror"
                                 name="id_technician" value="{{ old('id_technician') }}" required
-                                autocomplete="id_technician" autofocus placeholder="Id Technician" disabled>
+                                autocomplete="id_technician" autofocus placeholder="Id Technician">
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" name="submit"

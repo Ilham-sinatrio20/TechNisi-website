@@ -51,7 +51,6 @@
                                 <!-- <img src="img/logo.png" alt="Logo"> -->
                             </a>
                         </div>
-<<<<<<< HEAD
                     </div>
                     <div class="col-lg-9">
                         <div class="topbar">
@@ -68,24 +67,6 @@
                                     <a href=""><i class="fab fa-youtube"></i></a>
                                     <a href=""><i class="fab fa-instagram"></i></a>
                                     <a href=""><i class="fab fa-linkedin-in"></i></a>
-=======
-                        <div class="col-lg-9">
-                            <div class="topbar">
-                                <div class="topbar-col">
-                                    <a href="tel:+012 345 67890"><i class="fa fa-phone"></i>+012 345 67890</a>
-                                </div>
-                                <div class="topbar-col">
-                                    <a href="mailto:info@example.com"><i class="fa fa-envelope"></i>technisi@gmail.com</a>
-                                </div>
-                                <div class="topbar-col">
-                                    <div class="topbar-social">
-                                        <a href=""><i class="fab fa-twitter"></i></a>
-                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a href=""><i class="fab fa-youtube"></i></a>
-                                        <a href=""><i class="fab fa-instagram"></i></a>
-                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
->>>>>>> 1010d01b2bd01c45b5520e6832306a615809ce2a
                                 </div>
                             </div>
                         </div>
@@ -114,24 +95,15 @@
                                         class="nav-item nav-link {{ ($title == 'Login') ? 'active' : '' }}">Login</a>
                                     @endif
                                     @else
-<<<<<<< HEAD
                                     <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
+                                    <a href="/statistik" class="nav-item nav-link">Statistik</a>
                                     <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{
                                             Auth::user()->username }}</a>
                                         <div class="dropdown-menu">
+                                            <a href="/profile" class="dropdown-item">Profile</a>
                                             <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-=======
-                                        <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
-                                        <div class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }}</a>
-                                            <div class="dropdown-menu">
-                                                <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
-                                                <a href="{{ route('cust.edit', Auth::user()->username) }}" class="dropdown-item">Settings</a>
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                     onclick="event.preventDefault();
->>>>>>> 1010d01b2bd01c45b5520e6832306a615809ce2a
                                                     document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
@@ -146,7 +118,6 @@
                             </div>
                         </div>
                     </div>
-<<<<<<< HEAD
                 </div>
                 @if(request()->routeIs('index.home'))
                 <div class="hero row align-items-center">
@@ -180,41 +151,6 @@
                                 <textarea class="form-control" placeholder="Komentar"></textarea>
                                 <button class="btn btn-block">Dapatkan Penawaran</button>
                             </form>
-=======
-            @if(request()->routeIs('index.home'))
-                    <div class="hero row align-items-center">
-                        <div class="col-md-7">
-                            @guest
-                                <h2>Best & Trusted</h2>
-                                <h2><span>Website</span> Service</h2>
-                                <p>Temukan Teknisi Servis Terdekat</p>
-                                <a class="btn" href="{{ route('tech.show') }}">Cari Sekarang</a>
-                            @else
-                                <h2><span>TechNisi</span> Website</h2>
-                                <h2><span>Selamat Datang</span> {{ strtok(Auth::user()->name, " ") }}</h2>
-                                <p>Temukan Teknisi Servis Terdekat</p>
-                                <a class="btn" href="{{ route('tech.show') }}">Cari Sekarang</a>
-                            @endguest
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form">
-                                <h3>Dapatkan Penawaran</h3>
-                                <form>
-                                    <input class="form-control" type="text" placeholder="Nama Anda">
-                                    <input class="form-control" type="text" placeholder="Nomor Telepon">
-                                    <div class="control-group">
-                                        <select class="custom-select">
-                                            <option selected>Pilih Servis</option>
-                                            <option value="1">Servis Elektronik</option>
-                                            <option value="2">Servis Perabotan</option>
-                                            <option value="3">Servis Laptop</option>
-                                        </select>
-                                    </div>
-                                    <textarea class="form-control" placeholder="Komentar"></textarea>
-                                    <button class="btn btn-block">Dapatkan Penawaran</button>
-                                </form>
-                            </div>
->>>>>>> 1010d01b2bd01c45b5520e6832306a615809ce2a
                         </div>
                     </div>
                 </div>

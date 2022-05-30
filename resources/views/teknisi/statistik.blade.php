@@ -1,13 +1,15 @@
-@extends('layouts.layoutTeknisi')
+@extends('layouts.layout')
 @section('main-content')
 <div class="container">
 
-    <ul class="nav nav-tabs nav-justified mt-3">
-        <li class="active"><a data-toggle="tab" href="#seluruh">Seluruh</a></li>
-        <li><a data-toggle="tab" href="#ringan">Ringan</a></li>
-        <li><a data-toggle="tab" href="#sedang">Sedang</a></li>
-        <li><a data-toggle="tab" href="#berat">Berat</a></li>
-    </ul>
+    <div class="col-4">
+        <ul class="nav nav-tabs nav-justified mt-3 d-flex justify-content-between">
+            <li class="active"><a data-toggle="tab" href="#seluruh">Seluruh</a></li>
+            <li><a data-toggle="tab" href="#ringan">Ringan</a></li>
+            <li><a data-toggle="tab" href="#sedang">Sedang</a></li>
+            <li><a data-toggle="tab" href="#berat">Berat</a></li>
+        </ul>
+    </div>
 
     <div class="tab-content mt-5 mb-5">
         <div id="seluruh" class="tab-pane fade in active">
@@ -28,7 +30,7 @@
                         <td>{{ $dt->level }}</td>
                         <td>{{ $dt->status }}</td>
                         @php
-                        $total++;
+                        $total = $loop->iteration;
                         @endphp
                         @endforeach
                     </tr>
@@ -59,7 +61,7 @@
                         <td>{{ $dt->level }}</td>
                         <td>{{ $dt->status }}</td>
                         @php
-                        $total++;
+                        $total = $loop->iteration;
                         @endphp
                         @endforeach
                     </tr>
@@ -91,7 +93,7 @@
                         <td>{{ $dt->status }}</td>
                         @php
                         if ($levelsedang){}
-                        $total++;
+                        $total = $loop->iteration;
                         @endphp
                         @endforeach
                     </tr>
@@ -122,7 +124,10 @@
                         <td>{{ $dt->level }}</td>
                         <td>{{ $dt->status }}</td>
                         @php
-                        $total++;
+                        if (empty($levelberat))
+                        $total = 0;
+                        else
+                        $total = $loop->iteration;
                         @endphp
                         @endforeach
                     </tr>

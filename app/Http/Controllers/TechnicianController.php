@@ -11,10 +11,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\TechnicianRequest;
 use App\Http\Requests\TransactionRequest;
+use App\Models\Role;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 
-class TechnicianController extends Controller {
+class TechnicianController extends Controller
+{
     public function createTrans(TechnicianRequest $request)
     {
         $request->validated();
@@ -94,7 +96,8 @@ class TechnicianController extends Controller {
         ]);
     }
 
-    public function showAll() {
+    public function showAll()
+    {
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select(
             'technician_id AS id_tech',
@@ -115,7 +118,8 @@ class TechnicianController extends Controller {
         return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
     }
 
-    public function showTrans($id) {
+    public function showTrans($id)
+    {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -140,7 +144,8 @@ class TechnicianController extends Controller {
         return response()->json(['data' => $data]);
     }
 
-    public function checkOrder($id) {
+    public function checkOrder($id)
+    {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -176,7 +181,6 @@ class TechnicianController extends Controller {
         $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
         $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
         $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
-        dd($data)
         $count = 0;
         return view(
             'teknisi.statistik',
@@ -191,12 +195,14 @@ class TechnicianController extends Controller {
         );
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $cust = Transaction::where('trans_id', '=', $id)->delete();
         return response()->json(['message' => 'Succesfully delete data']);
     }
 
-    public function updateTech(TechnicianRequest $request, UserRequest $req, $id) {
+    public function updateTech(TechnicianRequest $request, UserRequest $req, $id)
+    {
         $request->validated();
         $tech = Technician::where('technician_id', $id)->first();
         $id_ = $tech->user_id;
@@ -223,6 +229,19 @@ class TechnicianController extends Controller {
         $tech->save();
         $user->update();
         return response()->json(["Message"   => "Technician has successfully update"]);
+    }
+    public function myProfile()
+    {
+        $dataProfile = auth()->user();
+        $status = (Role::where('id', $dataProfile->id_role)->first())->name;
+        return view(
+            'ubahdata',
+            [
+                'status' => $status,
+                'data' => $dataProfile,
+                'title' => "My Profile",
+            ]
+        );
     }
 }
 

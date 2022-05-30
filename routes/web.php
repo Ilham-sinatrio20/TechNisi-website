@@ -91,7 +91,8 @@ Route::prefix('/')->group(function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
-    Route::get('/statisik', [TechnicianController::class, 'statistik'])->name('statisik');
+    Route::get('/statistik', [TechnicianController::class, 'statistik'])->name('statisik');
+    Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
     Route::get('/detailOrder', function () {
         return view(
             'teknisi.detailOrder',
