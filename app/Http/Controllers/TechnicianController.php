@@ -235,7 +235,7 @@ class TechnicianController extends Controller
         $dataProfile = auth()->user();
         $status = (Role::where('id', $dataProfile->id_role)->first())->name;
         return view(
-            'ubahdata',
+            'teknisi.my_profile',
             [
                 'status' => $status,
                 'data' => $dataProfile,
