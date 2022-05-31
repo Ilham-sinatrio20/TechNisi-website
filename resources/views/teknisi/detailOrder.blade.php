@@ -16,7 +16,7 @@
                         <li><a href="detailOrder">Order Number :<br>123A<br>Pelanggan :<br>Hendra Kusuma</a></li>
                         <li><a href="detailOrder">Order Number :<br>124A<br>Pelanggan :<br>Anggito Pramono</a></li>
                         <li><a href="detailOrder">Order Number :<br>125A<br>Pelanggan :<br>Nelsya Purwantari</a></li>
-                        <li><a href="#">Order Number :<br>126A<br>Pelanggan :<br>Eka Satriyo</a></li>
+                        <li><a href="detailOrder">Order Number :<br>126A<br>Pelanggan :<br>Eka Satriyo</a></li>
                         <li><a href="#">Order Number :<br>127A<br>Pelanggan :<br>Pangestika Nurahma</a></li>
                     </ul>
                     </nav>
