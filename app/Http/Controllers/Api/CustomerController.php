@@ -48,9 +48,12 @@ class CustomerController extends Controller {
     }
 
     public function showCust($id){
-        $cust = Customer::select('cust_id', 'address', 'user_id', 'u.name', 'u.email', 'u.phone', 'u.username')
+        $cust = Customer::select('photos', 'cust_id', 'address', 'customer.user_id',
+        'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username', 'r.name AS role_name',
+        'u.id_role AS role_id')
         ->join('users AS u', 'customer.user_id', '=', 'u.id')
-        ->where('cust_id', $id)->first();
+        ->join('role AS r', 'u.id_role', '=', 'r.id')
+        ->where('u.username', 'LIKE', '%'.$id.'%')->first();
         return response()->json(['cust' => $cust]);
     }
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('desc',  255);
             $table->string('certification', 225);
             $table->string('address', 225);
-            $table->string('photos', 100)->nullable();
+            $table->string('photos', 225)->nullable();
             $table->timestamps();
 
             $table->foreign('specialist_id')->references('id_specialist')->on('specialization')->cascadeOnDelete();

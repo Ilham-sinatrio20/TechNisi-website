@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->bigIncrements('cust_id');
             $table->string('address', 225);
-            $table->string('photos', 100)->nullable();
+            $table->string('photos', 225)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

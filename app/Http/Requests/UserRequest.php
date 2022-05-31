@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|min:15|max:255|unique:users',
                     'username' => 'required|string|min:10|max:100|unique:users',
-                    'phone' => 'required|string|max:20|min:12',
+                    'phone' => 'required|string|max:20|min:11',
                     'id_role' => 'required|integer|exists:role,id',
                     //'password' => 'required|string|min:8|max:255',
                 ];
@@ -37,18 +37,18 @@ class UserRequest extends FormRequest
             case 'PUT': {
                 return [
                     'name' => 'sometimes|string|max:255',
-                    'email' => 'sometimes|string|email|min:15|max:255|unique:users',
-                    'username' => 'sometimes|string|min:10|max:100|unique:users',
-                    'phone' => 'sometimes|string|max:20|min:12',
+                    'email' => 'sometimes|string|email|min:15|max:255',
+                    'username' => 'sometimes|string|min:10|max:100',
+                    'phone' => 'sometimes|string|max:20|min:11',
                     //'password' => 'sometimes|string|min:8|max:255',
                 ];
             } break;
         }
     }
 
-    protected function failedValidation(Validator $validator) {
-        throw new HttpResponseException(response()->json([
-            'message' => $validator->errors()],
-        422));
-    }
+    // protected function failedValidation(Validator $validator) {
+    //     throw new HttpResponseException(response()->json([
+    //         'message' => $validator->errors()],
+    //     422));
+    // }
 }

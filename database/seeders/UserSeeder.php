@@ -17,7 +17,7 @@ class UserSeeder extends Seeder {
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'username' => 'admin',
+                'username' => 'admin_id_1354',
                 'phone' => '08113652797',
                 'id_role' => 1,
                 'password' => bcrypt('admin123'),
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder {
             [
                 'name' => 'Ilham S Gumelar',
                 'email' => 'Ilham_sg@gmail.com',
-                'username' => 'users',
+                'username' => 'ilham_sg20',
                 'phone' => '08113652797',
                 'id_role' => 2,
                 'password' => bcrypt('user123'),
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder {
             [
                 'name' => 'Michael Schumacher',
                 'email' => 'schumi@gmail.com',
-                'username' => 'schumi90',
+                'username' => 'schumi90_44',
                 'phone' => '08113652797',
                 'id_role' => 3,
                 'password' => bcrypt('user123'),

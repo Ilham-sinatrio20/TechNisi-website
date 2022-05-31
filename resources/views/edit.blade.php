@@ -73,10 +73,11 @@
                 <span class="glyphicon glyphicon-camera"></span>
                 <span>Change Image</span>
             </label>
-            <input id="file" type="file" name="photos" onchange="loadFile(event)"/>
-            @if($users->photos)
-                <img src="{{ asset('storage/image/tech' . $users->photos) }}" id="output" width="200" />
+            @if($users->photos == null)
+                <input type="hidden" name="oldImage" value="{{ $users->photos }}">
+                <img src="{{ asset('storage/' . $users->photos) }}" alt="{{ $users->name }}" id="output" width="200" />
             @else
+                <input id="file" type="file" name="photos" onchange="loadFile(event)"/>
                 <img src="https://source.unsplash.com/200x200?person" id="output" width="200" />
             @endif
         </div>
@@ -96,7 +97,7 @@
                     <table class="table table-hover table-sm table-properties">
                             <tr>
                                 <th>Name</th>
-                                <td><input type="text" class="text-decoration-none border-0 @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $users->name) }}"></td>
+                                <td><input type="text" class="text-decoration-none border-0 w-75 @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $users->name) }}"></td>
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -105,7 +106,7 @@
                             </tr>
                             <tr>
                                 <th>Email</th>
-                                <td><input type="email" class="text-decoration-none border-0 @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $users->email) }}"></td>
+                                <td><input type="email" class="text-decoration-none border-0 w-50 @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $users->email) }}"></td>
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -132,7 +133,7 @@
                             </tr>
                             <tr>
                                 <th>Phone</th>
-                                <td><input type="tel" class="text-decoration-none border-0 w-100 @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $users->phone) }}"></td>
+                                <td><input type="tel" class="text-decoration-none border-0 w-50 @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $users->phone) }}"></td>
                                 @error('phone')
                                     <div class="invalid-feedback">
                                         {{ $message }}
