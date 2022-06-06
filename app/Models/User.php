@@ -28,7 +28,6 @@ class User extends Authenticatable {
         'username',
         'phone',
         'id_role',
-        'password',
     ];
 
     /**
@@ -69,4 +68,9 @@ class User extends Authenticatable {
     public function receiver(){
         return $this->hasMany(Message::class, 'receiver');
     }
+
+    public function getRouteKeyName() {
+        return 'username';
+    }
 }
+

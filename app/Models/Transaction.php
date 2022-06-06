@@ -10,17 +10,18 @@ class Transaction extends Model {
 
     protected $table = 'Transaction';
     protected $primaryKey = 'trans_id';
-    protected $fillable = [
-        'trans_id',
-        'level',
-        'desc',
-        'price',
-        'status',
-        'customer_id',
-        'id_technician',
-        'created_at',
-        'updated_at',
-    ];
+    protected $guarded = ['trans_id'];
+    // protected $fillable = [
+    //     'trans_id',
+    //     'level',
+    //     'desc',
+    //     'price',
+    //     'status',
+    //     'customer_id',
+    //     'id_technician',
+    //     'created_at',
+    //     'updated_at',
+    // ];
 
     public function customer(){
         return $this->belongsTo(Customer::class, 'customer_id', 'cust_id');

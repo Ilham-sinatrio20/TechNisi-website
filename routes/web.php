@@ -73,11 +73,11 @@ Route::prefix('/')->group(function () {
         ]);
     });
 
-    Route::get('profile', function () {
-        return view('profile', [
-            'title' => 'Profile'
-        ]);
-    });
+    // Route::get('profile', function () {
+    //     return view('profile', [
+    //         'title' => 'Profile'
+    //     ]);
+    // });
 
     Route::get('notifikasi', function () {
         return view('notifikasi', [
@@ -92,17 +92,15 @@ Route::prefix('/')->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
     Route::get('/statistik', [TechnicianController::class, 'statistik'])->name('statisik');
-    Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
+    //Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
+    Route::get('/profile/{username}', [CustomerController::class, 'edit'])->name('profile');
+    Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
+    Route::put('/profile/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
+    Route::put('/tech//profile/{username}', [TechnicianController::class, 'updateCust'])->name('tech.update');
     Route::get('/detailOrder', function () {
         return view(
             'teknisi.detailOrder',
             ['title' => 'Order Detail']
         );
     })->name('teknisi.detailOrder');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/cust/edit/{username}', [CustomerController::class, 'edit'])->name('cust.edit');
-
-    Route::put('/cust/edit/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
 });

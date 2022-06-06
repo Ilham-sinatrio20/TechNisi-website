@@ -20,7 +20,8 @@ class TechnicianFactory extends Factory
     {
         return [
             'specialist_id' => rand(1, Specialization::count()),
-            'user_id' => rand(1, User::count()),
+            // 'user_id' => rand(1, User::count()),
+            'user_id' => User::factory()->create()->id,
             'desc' => $this->faker->text,
             'certification' => $this->faker->sentence(),
             'address' => $this->faker->address(),

@@ -15,10 +15,8 @@ use App\Models\Role;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 
-class TechnicianController extends Controller
-{
-    public function createTrans(TechnicianRequest $request)
-    {
+class TechnicianController extends Controller {
+    public function createTrans(TechnicianRequest $request) {
         $request->validated();
         $tech = new Technician;
         if ($request->hasFile('photos')) {
@@ -42,8 +40,7 @@ class TechnicianController extends Controller
         return response()->json(['message' => 'Successfully create transaction']);
     }
 
-    public function showTech($id)
-    {
+    public function showTech($id) {
         $tech = Technician::select(
             'technician_id',
             'specialist_id',
@@ -96,8 +93,7 @@ class TechnicianController extends Controller
         ]);
     }
 
-    public function showAll()
-    {
+    public function showAll() {
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select(
             'technician_id AS id_tech',
@@ -118,8 +114,7 @@ class TechnicianController extends Controller
         return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
     }
 
-    public function showTrans($id)
-    {
+    public function showTrans($id) {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -144,8 +139,7 @@ class TechnicianController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function checkOrder($id)
-    {
+    public function checkOrder($id) {
         $data = Transaction::select(
             'trans_id',
             'level',
@@ -173,10 +167,8 @@ class TechnicianController extends Controller
         );
     }
 
-    public function statistik()
-    {
-        $id_user = auth()->user()->id;
-        $id_tech = Technician::where('user_id', '=', $id_user)->first();
+    public function statistik() {
+        $id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
         $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
         $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
         $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
@@ -230,6 +222,22 @@ class TechnicianController extends Controller
         $user->update();
         return response()->json(["Message"   => "Technician has successfully update"]);
     }
+
+    public function edit($username){
+        $users = Technician::select('photos', 'cust_id', 'address', 'user_id', 'certification', 'desc',
+        'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username', 'r.name AS role_name',
+        'u.id_role AS role_id')
+        ->join('users AS u', 'technician.user_id', '=', 'u.id')
+        ->join('role AS r', 'u.id_role', '=', 'r.id')
+        ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
+        ->where('username', $username)->first();
+        //dd($users);
+        return view('edit', [
+            'title' => 'Edit Profile',
+            'users' => $users
+        ]);
+    }
+
     public function myProfile()
     {
         $dataProfile = auth()->user();

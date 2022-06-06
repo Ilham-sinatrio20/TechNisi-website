@@ -55,7 +55,7 @@
                     <div class="col-lg-9">
                         <div class="topbar">
                             <div class="topbar-col">
-                                <a href="tel:+012 345 67890"><i class="fa fa-phone-alt"></i>+012 345 67890</a>
+                                <a href="tel:+012 345 67890"><i class="fa fa-phone"></i>+012 345 67890</a>
                             </div>
                             <div class="topbar-col">
                                 <a href="mailto:info@example.com"><i class="fa fa-envelope"></i>technisi@gmail.com</a>
@@ -87,21 +87,21 @@
                                         class="nav-item nav-link {{ ($title == 'Service') ? 'active' : '' }}">Servis</a>
                                     <a href="{{ route('tech.show') }}"
                                         class="nav-item nav-link {{ ($title == 'Teknisi') ? 'active' : '' }}">Teknisi</a>
-                                    @guest
-                                    @if (Route::has('login'))
                                     <a href="contact"
                                         class="nav-item nav-link {{ ($title == 'Contact') ? 'active' : '' }}">Contact</a>
-                                    <a href={{ route('login.auth') }}
-                                        class="nav-item nav-link {{ ($title == 'Login') ? 'active' : '' }}">Login</a>
-                                    @endif
+                                    @guest
+                                        @if (Route::has('login'))
+                                        <a href={{ route('login.auth') }}
+                                            class="nav-item nav-link {{ ($title == 'Login') ? 'active' : '' }}">Login</a>
+                                        @endif
                                     @else
                                     <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
-                                    <a href="/statistik" class="nav-item nav-link">Statistik</a>
+                                    <a href="{{ route('statisik') }}" class="nav-item nav-link">Statistik</a>
                                     <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{
                                             Auth::user()->username }}</a>
                                         <div class="dropdown-menu">
-                                            <a href="/profile" class="dropdown-item">Profile</a>
+                                            <a href="{{ route('profile', Auth::user()->username) }}" class="dropdown-item">Profile</a>
                                             <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

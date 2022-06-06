@@ -65,8 +65,8 @@ class CustomerController extends Controller {
         'u.id_role AS role_id')
         ->join('users AS u', 'customer.user_id', '=', 'u.id')
         ->join('role AS r', 'u.id_role', '=', 'r.id')
-        ->where('u.username', $username)->first();
-        // dd($users);
+        ->where('username', $username)->first();
+        //dd($users);
         return view('edit', [
             'title' => 'Edit Profile',
             'users' => $users
@@ -89,18 +89,16 @@ class CustomerController extends Controller {
 
     public function updateCust(CustomerRequest $request, UserRequest $req, $username){
         $request->validated();
+        $req->validated();
         //$req->validated();
-        $user = User::select('id', 'name', 'email', 'username', 'phone')->where('username', $username)->first();
-        $id_ = $user->id;
-        $cust = Customer::where('user_id', $id_)->first();
+        $user = User::where('username', $username)->first();
+        $cust = Customer::where('user_id', '=', $user->id)->first();
 
-
-
-        if($request->file('image')){
-            if($request->oldImage) {
-                Storage::delete($request->oldImage);
+        if($request->file('photos')){
+            if(request('oldImage')) {
+                Storage::delete(request('oldImage'));
             }
-            $cust['photos'] = $request->file('image')->store('cust-images');
+            $cust['photos'] = $request->file('photos')->store('cust-images');
         }
         // if($request->hasFile('photos')){
         //     $path = 'assets/image/cust'.$cust->photos;

@@ -18,7 +18,7 @@ class CustomerFactory extends Factory {
         return [
             'address' => $this->faker->address(),
             //'photos'  => $this->faker->image('public/storage/image/cust', 400, 300),
-            'user_id' => rand(1, User::count()),
+            'user_id' => User::factory()->create()->id,
         ];
     }
 }
