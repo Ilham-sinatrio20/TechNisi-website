@@ -101,7 +101,11 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{
                                             Auth::user()->username }}</a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('profile', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @if (Auth::user()->id_role == 2)
+                                                <a href="{{ route('profile', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @else
+                                                <a href="{{ route('profile.tech', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @endif
                                             <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

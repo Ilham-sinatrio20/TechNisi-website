@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Technician;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\TechnicianRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\TransactionRequest;
-use App\Models\Role;
-use App\Models\Specialization;
-use Illuminate\Support\Facades\DB;
 
 class TechnicianController extends Controller {
     public function createTrans(TechnicianRequest $request) {
@@ -193,23 +195,18 @@ class TechnicianController extends Controller {
         return response()->json(['message' => 'Succesfully delete data']);
     }
 
-    public function updateTech(TechnicianRequest $request, UserRequest $req, $id)
+    public function updateTech(TechnicianRequest $request, UserRequest $req, $username)
     {
         $request->validated();
-        $tech = Technician::where('technician_id', $id)->first();
-        $id_ = $tech->user_id;
-        $user = User::select('id', 'name', 'email', 'username', 'phone')->where('id', $tech->user_id)->first();
+        $req->validated();
+        $user = User::where('username', $username)->first();
+        $tech = Technician::where('user_id', $user->id)->first();
 
-        if ($request->hasFile('photos')) {
-            $path = 'assets/image/tech' . $tech->photos;
-            if (File::exists($path)) {
-                File::delete($path);
+        if($request->file('photos')){
+            if(request('oldImage')) {
+                Storage::delete(request('oldImage'));
             }
-            $file = $request->file('photos');
-            $ext = $file->getClientOriginalExtension();
-            $img_name = time() . '.' . $ext;
-            $file->move('assets/image/tech', $img_name);
-            $tech->photos = $img_name;
+            $tech['photos'] = $request->file('photos')->store('tech-images');
         }
         $tech->desc = $request->desc;
         $tech->certification = $request->certification;
@@ -220,13 +217,14 @@ class TechnicianController extends Controller {
         $user->phone = $req->phone;
         $tech->save();
         $user->update();
-        return response()->json(["Message"   => "Technician has successfully update"]);
+        Alert::success('Success', 'Update Technician Sukses');
+        return back();
     }
 
     public function edit($username){
-        $users = Technician::select('photos', 'cust_id', 'address', 'user_id', 'certification', 'desc',
+        $users = Technician::select('photos', 'technician_id', 'address', 'user_id', 'certification', 'desc',
         'u.name AS name', 'u.email AS email', 'u.phone AS phone', 'u.username AS username', 'r.name AS role_name',
-        'u.id_role AS role_id')
+        'u.id_role AS role_id', 's.category AS category', 's.id_specialist AS id_specialist')
         ->join('users AS u', 'technician.user_id', '=', 'u.id')
         ->join('role AS r', 'u.id_role', '=', 'r.id')
         ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
@@ -252,6 +250,18 @@ class TechnicianController extends Controller {
         );
     }
 }
+
+        // if ($request->hasFile('photos')) {
+        //     $path = 'assets/image/tech' . $tech->photos;
+        //     if (File::exists($path)) {
+        //         File::delete($path);
+        //     }
+        //     $file = $request->file('photos');
+        //     $ext = $file->getClientOriginalExtension();
+        //     $img_name = time() . '.' . $ext;
+        //     $file->move('assets/image/tech', $img_name);
+        //     $tech->photos = $img_name;
+        // }
 
 
 

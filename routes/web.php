@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/{username}', [CustomerController::class, 'edit'])->name('profile');
     Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
     Route::put('/profile/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
-    Route::put('/tech//profile/{username}', [TechnicianController::class, 'updateCust'])->name('tech.update');
+    Route::put('/tech//profile/{username}', [TechnicianController::class, 'updateTech'])->name('tech.update');
     Route::get('/detailOrder', function () {
         return view(
             'teknisi.detailOrder',

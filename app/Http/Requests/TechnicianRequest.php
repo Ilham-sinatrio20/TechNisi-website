@@ -39,7 +39,7 @@ class TechnicianRequest extends FormRequest {
                     'certification' => 'sometimes|string|max:255',
                     'address' => 'sometimes|string|max:255',
                     'photos' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'specialist_id' => 'required|integer|exists:specialization,id_specialist',
+                    'specialist_id' => 'sometimes|integer|exists:specialization,id_specialist',
                 ];
             } break;
         }
