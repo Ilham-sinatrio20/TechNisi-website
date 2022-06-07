@@ -122,6 +122,25 @@
                             <div class="text-right text-muted pt-1">4d</div>
                         </span>
                     </div>
+                    <div class="p-3 d-flex align-items-center border-bottom osahan-post-header">
+                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="https://th.bing.com/th/id/OIP.UfmefPnHZ31Hu9oyA8P2CAAAAA?pid=ImgDet&w=299&h=299&rs=1" alt="" /></div>
+                        <div class="font-weight-bold mr-3">
+                            <div class="text-truncate">Pesanan Selesai</div>
+                            <div class="small">Veranika: Terima kasih Teknisi!</div>
+                        </div>
+                        <span class="ml-auto mb-auto">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button"><i class="mdi mdi-delete"></i> Delete</button>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="text-right text-muted pt-1">4d</div>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
