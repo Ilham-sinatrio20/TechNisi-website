@@ -89,6 +89,8 @@
                                         class="nav-item nav-link {{ ($title == 'Teknisi') ? 'active' : '' }}">Teknisi</a>
                                     <a href="contact"
                                         class="nav-item nav-link {{ ($title == 'Contact') ? 'active' : '' }}">Contact</a>
+                                    <a href="notifikasi"
+                                        class="nav-item nav-link {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>    
                                     @guest
                                         @if (Route::has('login'))
                                         <a href={{ route('login.auth') }}

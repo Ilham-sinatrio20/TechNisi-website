@@ -67,8 +67,13 @@ Route::prefix('/')->group(function () {
             'title' => 'Teknisi'
         ]);
     });
-    Route::get('form-transc', function () {
+    Route::get('form-transc1', function () {
         return view('transactionForm', [
+            'title' => 'Transaksi Form',
+        ]);
+    });
+    Route::get('form-transc', function () {
+        return view('transactionForm1', [
             'title' => 'Transaksi Form',
         ]);
     });
