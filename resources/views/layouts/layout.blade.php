@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     @if(Route::is('inbox.show') || Route::is('inbox.index'))
-    <title>TechNisi | Inbox Page</title>
+        <title>TechNisi | Inbox Page</title>
     @endif
     <title>TechNisi | {{ $title }} Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -90,7 +90,7 @@
                                     <a href="contact"
                                         class="nav-item nav-link {{ ($title == 'Contact') ? 'active' : '' }}">Contact</a>
                                     <a href="notifikasi"
-                                        class="nav-item nav-link {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>    
+                                        class="nav-item nav-link {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>
                                     @guest
                                         @if (Route::has('login'))
                                         <a href={{ route('login.auth') }}

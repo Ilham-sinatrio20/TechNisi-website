@@ -10,7 +10,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
-
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
 */
 
 Auth::routes();
+Route::post('createUsers', [UserController::class, 'register'])->name('create.users');
 Route::get('/indexTeknisi', function () {
     return view('teknisi.technician');
 })->name('teknisi.index');
@@ -34,9 +36,9 @@ Route::prefix('/')->group(function () {
         return view('auth.login', ['title' => 'Login']);
     })->name('login.auth');
 
-    Route::get('register-page', function () {
+    Route::get('register', function () {
         return view('auth.register', ['title' => 'Register']);
-    })->name('register.auth');
+    });
 
     Route::get('', function () {
         return view('index', [
