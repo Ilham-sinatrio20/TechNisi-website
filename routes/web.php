@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -98,16 +99,11 @@ Route::prefix('/')->group(function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
-    Route::get('/statistik', [TechnicianController::class, 'statistik'])->name('statisik');
+    Route::get('/statistik/{username}', [UserController::class, 'statistik'])->name('statisik');
     //Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
     Route::get('/profile/{username}', [CustomerController::class, 'edit'])->name('profile');
     Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
     Route::put('/profile/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
-    Route::put('/tech//profile/{username}', [TechnicianController::class, 'updateTech'])->name('tech.update');
-    Route::get('/detailOrder', function () {
-        return view(
-            'teknisi.detailOrder',
-            ['title' => 'Order Detail']
-        );
-    })->name('teknisi.detailOrder');
+    Route::put('/tech/profile/{username}', [TechnicianController::class, 'updateTech'])->name('tech.update');
+    Route::get('/detailOrder', [TransactionController::class, 'detailOrder'])->name('teknisi.detailOrder');
 });

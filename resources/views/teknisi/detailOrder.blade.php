@@ -13,11 +13,15 @@
                 <div class="scrollmenu">
                     <nav>
                     <ul>
-                        <li><a href="detailOrder">Order Number :<br>123A<br>Pelanggan :<br>Hendra Kusuma</a></li>
-                        <li><a href="detailOrder">Order Number :<br>124A<br>Pelanggan :<br>Anggito Pramono</a></li>
-                        <li><a href="detailOrder">Order Number :<br>125A<br>Pelanggan :<br>Nelsya Purwantari</a></li>
-                        <li><a href="detailOrder">Order Number :<br>126A<br>Pelanggan :<br>Eka Satriyo</a></li>
-                        <li><a href="#">Order Number :<br>127A<br>Pelanggan :<br>Pangestika Nurahma</a></li>
+                        @foreach ($transaction as $trans)
+                            @if(Auth::user()->id_role = 2)
+                                <li><a href="detailOrder/{{ $trans->trans_id }}">Order Number :<br><br>Pelanggan :<br>{{ $trans->cust_name }}</a></li>
+                            @elseif (Auth::user()->id_role = 3)
+                                <li><a href="detailOrder/{{ $trans->trans_id }}">Order Number :<br>{{ $trans->$trans_id }}<br>Teknisi :<br>{{ $trans->cust_name }}</a></li>
+                            @else
+                                <li><a href="detailOrder">Data Not Found</a>
+                            @endif
+                        @endforeach
                     </ul>
                     </nav>
                 </div>

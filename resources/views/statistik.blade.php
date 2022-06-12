@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('main-content')
 <div class="container">
-
     <div class="col-4">
         <ul class="nav nav-tabs nav-justified mt-3 d-flex justify-content-between">
             <li class="active"><a data-toggle="tab" href="#seluruh">Seluruh</a></li>
@@ -10,8 +9,8 @@
             <li><a data-toggle="tab" href="#berat">Berat</a></li>
         </ul>
     </div>
-
     <div class="tab-content mt-5 mb-5">
+        @if ($dataseluruh->count() > 0)
         <div id="seluruh" class="tab-pane fade in active">
             <table class="table table-striped">
                 <thead>
@@ -140,6 +139,25 @@
                 </tbody>
             </table>
         </div>
+        @else
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Trans Id</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-success">
+                        <th colspan="4">
+                            <center class="text-danger">Data not Found</center>
+                        </th>
+                    </tr>
+            </tbody>
+        </table>
+        @endif
     </div>
 
 </div>

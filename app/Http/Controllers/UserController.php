@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Customer;
+use App\Models\Technician;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -25,4 +28,47 @@ class UserController extends Controller {
         return redirect()->route('login.auth')->with('success', 'Success Create Data');
 
     }
+
+    public function statistik() {
+        if(auth()->user()->id_role == 2) {
+            $id_cust = Customer::where('user_id', '=', auth()->id())->first();
+            $dataseluruh = Transaction::where('customer_id', '=', $id_cust->cust_id)->orderBy('level', 'asc')->get();
+            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'Ringan')->get();
+            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'Sedang')->get();
+            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'berat')->get();
+            $count = 0;
+            return view(
+                'statistik',
+                [
+                    'dataseluruh' => $dataseluruh,
+                    'levelringan' => $dataringan,
+                    'levelsedang' => $datasedang,
+                    'levelberat' => $databerat,
+                    'total' => $count,
+                    'title' => "Statistik Customer",
+                ]
+            );
+        } else if (auth()->user()->id_role == 3) {
+            $id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
+            $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
+            $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
+            $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
+            $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
+            $count = 0;
+            return view(
+                'statistik',
+                [
+                    'dataseluruh' => $dataseluruh,
+                    'levelringan' => $dataringan,
+                    'levelsedang' => $datasedang,
+                    'levelberat' => $databerat,
+                    'total' => $count,
+                    'title' => "Statistik Teknisi",
+                ]
+            );
+        } else {
+            return redirect()->route('index.home');
+        }
+    }
 }
+

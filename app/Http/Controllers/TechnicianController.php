@@ -168,27 +168,6 @@ class TechnicianController extends Controller {
             ['data' => $data]
         );
     }
-
-    public function statistik() {
-        $id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
-        $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
-        $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
-        $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
-        $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
-        $count = 0;
-        return view(
-            'teknisi.statistik',
-            [
-                'dataseluruh' => $dataseluruh,
-                'levelringan' => $dataringan,
-                'levelsedang' => $datasedang,
-                'levelberat' => $databerat,
-                'total' => $count,
-                'title' => "Statistik Teknisi",
-            ]
-        );
-    }
-
     public function destroy($id)
     {
         $cust = Transaction::where('trans_id', '=', $id)->delete();
@@ -250,6 +229,29 @@ class TechnicianController extends Controller {
         );
     }
 }
+
+
+/*
+    public function statistik() {
+        $id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
+        $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
+        $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
+        $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
+        $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
+        $count = 0;
+        return view(
+            'teknisi.statistik',
+            [
+                'dataseluruh' => $dataseluruh,
+                'levelringan' => $dataringan,
+                'levelsedang' => $datasedang,
+                'levelberat' => $databerat,
+                'total' => $count,
+                'title' => "Statistik Teknisi",
+            ]
+        );
+    }
+*/
 
         // if ($request->hasFile('photos')) {
         //     $path = 'assets/image/tech' . $tech->photos;
