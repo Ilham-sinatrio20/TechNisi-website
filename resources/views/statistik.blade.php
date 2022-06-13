@@ -47,6 +47,11 @@
                             <a href="/detail-transaksi/{{ Auth::user()->username }}/{{$dt->trans_id }}" class="btn fs-small btn-info text-decoration-none" title="Show Detail">
                                 <span class="fa fa-fw fa-eye mx-1"></span>
                             </a>
+                            @if (Auth::user()->id_role = 3)
+                                <a href="" class="btn fs-small btn-warning text-decoration-none" title="Edit Transaksi">
+                                <span class="fa fa-fw fa-pencil-square-o mx-1"></span>
+                                </a>
+                            @endif
                         </th>
                     </tr>
                     @endforeach
@@ -96,6 +101,11 @@
                             <a href="/detail-transaksi/{{ Auth::user()->username }}/{{$dt->trans_id }}" class="btn fs-small btn-info text-decoration-none" title="Show Detail">
                                 <span class="fa fa-fw fa-eye mx-1"></span>
                             </a>
+                            @if (Auth::user()->id_role = 3)
+                                <a href="" class="btn fs-small btn-warning text-decoration-none" title="Edit Transaksi">
+                                <span class="fa fa-fw fa-pencil-square-o mx-1"></span>
+                                </a>
+                            @endif
                         </th>
                     </tr>
                     @endforeach
@@ -199,6 +209,11 @@
                             <a href="/detail-transaksi/{{ Auth::user()->username }}/{{$dt->trans_id }}" class="btn fs-small btn-info text-decoration-none" title="Show Detail">
                                 <span class="fa fa-fw fa-eye mx-1"></span>
                             </a>
+                            @if (Auth::user()->id_role = 3)
+                                <a href="" class="btn fs-small btn-warning text-decoration-none" title="Edit Transaksi">
+                                <span class="fa fa-fw fa-pencil-square-o mx-1"></span>
+                                </a>
+                            @endif
                         </th>
                     </tr>
                     @endforeach

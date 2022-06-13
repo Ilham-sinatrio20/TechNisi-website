@@ -94,7 +94,7 @@ Route::prefix('/')->group(function () {
     });
 
     Route::get('/tech', [TechnicianController::class, 'showAll'])->name('tech.show');
-    Route::get('/tech/{id_tech}', [TechnicianController::class, 'showTech'])->name('tech.detail');
+    Route::get('/tech/{name}', [TechnicianController::class, 'showTech'])->name('tech.detail');
 });
 
 Route::group(['middleware' => 'auth'], function () {

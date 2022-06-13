@@ -42,7 +42,7 @@ class TechnicianController extends Controller {
         return response()->json(['message' => 'Successfully create transaction']);
     }
 
-    public function showTech($id) {
+    public function showTech($name) {
         $tech = Technician::select(
             'technician_id',
             'specialist_id',
@@ -52,17 +52,17 @@ class TechnicianController extends Controller {
             'address',
             'photos',
             's.id_specialist',
-            's.category AS spesialis',
+            's.category AS category',
             'u.id',
             'u.name AS name',
             'u.email',
             'u.phone AS phone',
         )
-            ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
-            ->join('users AS u', 'technician.user_id', '=', 'u.id')
-            ->join('transaction AS t', 'technician.technician_id', '=', 't.id_technician')
-            ->where('technician_id', $id)
-            ->first();
+        ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
+        ->join('users AS u', 'technician.user_id', '=', 'u.id')
+        ->join('transaction AS t', 'technician.technician_id', '=', 't.id_technician')
+        ->where('u.name', $name)
+        ->first();
 
         $transaction = Transaction::select(
             'trans_id',
@@ -78,18 +78,20 @@ class TechnicianController extends Controller {
             't.user_id',
             'u.name AS user_name',
             'u2.name AS tech_name',
-            'transaction.created_at AS dates'
+            'u.username AS username',
+            'transaction.created_at AS dates',
+            't.specialist_id AS specialist_id'
         )
-            ->join('customer AS c', 'transaction.customer_id', '=', 'c.cust_id')
-            ->join('technician AS t', 'transaction.id_technician', '=', 't.technician_id')
-            ->join('users AS u', 'c.user_id', '=', 'u.id')
-            ->join('users AS u2', 't.user_id', '=', 'u2.id')
-            ->where('id_technician', $id)
-            ->get();
+        ->join('customer AS c', 'transaction.customer_id', '=', 'c.cust_id')
+        ->join('technician AS t', 'transaction.id_technician', '=', 't.technician_id')
+        ->join('users AS u', 'c.user_id', '=', 'u.id')
+        ->join('users AS u2', 't.user_id', '=', 'u2.id')
+        ->join('specialization', 't.specialist_id', '=', 'specialization.id_specialist')
+        ->where('u2.name', $name)
+        ->get();
 
         return view('teknisi.detail-tech', [
             'data' => $tech,
-            'no' => 1,
             'title' => 'Detail Teknisi',
             'trans' => $transaction,
         ]);
@@ -98,22 +100,18 @@ class TechnicianController extends Controller {
     public function showAll() {
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select(
-            'technician_id AS id_tech',
-            'specialization.category AS category',
-            'specialist_id',
-            'users.name AS name',
-            'user_id',
-            'desc',
-            'certification',
-            'address',
-            'photos'
+            'technician_id', 'u.name AS name', 'u.id'
         )
-            ->join('specialization', 'technician.specialist_id', '=', 'specialization.id_specialist')
-            ->join('users', 'technician.user_id', '=', 'users.id')
-            ->orderBy('id_tech', 'asc')
-            ->paginate(6);
+        ->join('users AS u', 'technician.user_id', '=', 'u.id')
+        ->orderBy('u.name', 'asc')
+        ->where('u.id_role', 3)
+        ->paginate(6);
 
-        return view('teknisi.list-tech', ['data' => $data, 'spec' => $spec, 'title' => 'Teknisi']);
+        return view('teknisi.list-tech', [
+            'data' => $data,
+            'spec' => $spec,
+            'title' => 'Teknisi'
+        ]);
     }
 
     public function showTrans($id) {

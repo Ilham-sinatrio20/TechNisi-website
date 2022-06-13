@@ -77,7 +77,11 @@
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <a href="#" type="button" class="btn btn-primary">Bayar</a>
+                                    @if(Auth::user()->id_role = 2)
+                                        <a href="#" type="button" class="btn btn-primary">Pembayaran</a>
+                                    @elseif(Auth::user()->id_role = 3)
+                                        <a href="#" type="button" class="btn btn-primary">Update Detail Transaksi</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

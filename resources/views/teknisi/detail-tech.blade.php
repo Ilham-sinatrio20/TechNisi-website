@@ -33,7 +33,7 @@
             <div class="single">
                 <div class="container">
                     <div class="section-header">
-                        <p>Teknisi {{ $data->spesialis }}</p>
+                        <p>Teknisi {{ $data->category }}</p>
                         <h2>{{ $data->name }}</h2>
                     </div>
                     <div class="row">
@@ -45,11 +45,6 @@
                             @endif
                             <h3>Deskripsi</h3>
                             <p>{{ $data->desc }}</p>
-                            {{-- <ul class="list-group">
-                                <li class="list-group-item">First list item</li>
-                                <li class="list-group-item">Second list item</li>
-                                <li class="list-group-item">Third list item</li>
-                            </ul> --}}
 
                             <h3 class="mb-3">Riwayat Transaksi</h3>
                             <table class="table table-bordered mb-4">
@@ -63,11 +58,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($trans as $tra)
+                                        @php
+                                            $times = strtotime($tra->dates)
+                                        @endphp
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $tra->user_name }}</td>
                                             <td>{{ $tra->description }}</td>
-                                            <td>{{ $tra->dates }}</td>
+                                            <td>{{ date("d M Y", $times) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -76,7 +74,13 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-11">
-                            <a href="{{ route('create.trans') }}" class="btn btn-success d-block">Pesan Sekarang</a>
+                            @if(Auth::user()->id_role = 2)
+                                <a href="{{ route('create.trans') }}" class="btn btn-success d-block">Pesan Sekarang</a>
+                            @elseif (Auth::user()->id_role = 3)
+                                <a href="#" class="btn btn-success d-block disabled">Anda Tidak Bisa Memesan Karena Sesama Teknisi</a>
+                            @else
+                                <a href="/login" class="btn btn-success d-block">Anda Tidak Bisa Memesan Karena Belum Login</a>
+                            @endif
                         </div>
                         <div class="col-lg-1">
                             <a href="{{ route('inbox.index') }}" wire:click="startChat({{ $data->id }})"><i class="fa fa-phone-square fa-3x" aria-hidden="true"></i></a>
@@ -85,7 +89,7 @@
                 </div>
             </div>
 
-         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
         <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
