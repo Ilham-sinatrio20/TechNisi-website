@@ -26,6 +26,7 @@
                     @php
                         $time = strtotime($dt->created_at);
                     @endphp
+
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $dt->trans_id }}</td>
