@@ -33,10 +33,9 @@ class UserController extends Controller {
         if(auth()->user()->id_role == 2) {
             $id_cust = Customer::where('user_id', '=', auth()->id())->first();
             $dataseluruh = Transaction::where('customer_id', '=', $id_cust->cust_id)->orderBy('level', 'asc')->get();
-            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'Ringan')->get();
-            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'Sedang')->get();
-            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', '=', 'berat')->get();
-            $count = 0;
+            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Ringan%')->get();
+            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Sedang%')->get();
+            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Berat%')->get();
             return view(
                 'statistik',
                 [
@@ -44,7 +43,6 @@ class UserController extends Controller {
                     'levelringan' => $dataringan,
                     'levelsedang' => $datasedang,
                     'levelberat' => $databerat,
-                    'total' => $count,
                     'title' => "Statistik Customer",
                 ]
             );
@@ -54,7 +52,6 @@ class UserController extends Controller {
             $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
             $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
             $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
-            $count = 0;
             return view(
                 'statistik',
                 [
@@ -62,7 +59,6 @@ class UserController extends Controller {
                     'levelringan' => $dataringan,
                     'levelsedang' => $datasedang,
                     'levelberat' => $databerat,
-                    'total' => $count,
                     'title' => "Statistik Teknisi",
                 ]
             );
