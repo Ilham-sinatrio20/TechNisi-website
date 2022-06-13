@@ -107,7 +107,7 @@
                                             <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
                                             <a href="notifikasi" class="dropdown-item {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>
                                             <a href="{{ route('statisik', Auth::user()->username) }}" class="dropdown-item">Statistik</a>
-                                            <a href="{{ route('teknisi.detailOrder') }}" class="dropdown-item">Order</a>
+                                            {{-- <a href="{{ route('teknisi.detailOrder') }}" class="dropdown-item">Order</a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
