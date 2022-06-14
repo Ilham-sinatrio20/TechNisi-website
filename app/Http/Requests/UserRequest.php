@@ -27,11 +27,11 @@ class UserRequest extends FormRequest
             case 'POST': {
                 return [
                     'name' => 'required|string|max:255',
-                    'email' => 'required|string|email|min:15|max:255|unique:users',
+                    'email' => 'required|string|email|min:10|max:255|unique:users',
                     'username' => 'required|string|min:10|max:100|unique:users',
                     'phone' => 'required|string|max:20|min:11',
                     'id_role' => 'required|integer|exists:role,id',
-                    //'password' => 'required|string|min:8|max:255',
+                    'password' => 'required|string|min:7|max:255',
                 ];
             } break;
             case 'PUT': {
@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
                     'email' => 'sometimes|string|email|min:15|max:255',
                     'username' => 'sometimes|string|min:10|max:100',
                     'phone' => 'sometimes|string|max:20|min:11',
-                    //'password' => 'sometimes|string|min:8|max:255',
+                    'password' => 'sometimes|string|min:8|max:255',
                 ];
             } break;
         }

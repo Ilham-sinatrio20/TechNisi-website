@@ -10,7 +10,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
-
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ use App\Http\Controllers\Api\TechnicianController as ApiTechnicianController;
 */
 
 Auth::routes();
+Route::post('createUsers', [UserController::class, 'register'])->name('create.users');
 Route::get('/indexTeknisi', function () {
     return view('teknisi.technician');
 })->name('teknisi.index');
@@ -34,9 +37,9 @@ Route::prefix('/')->group(function () {
         return view('auth.login', ['title' => 'Login']);
     })->name('login.auth');
 
-    Route::get('register-page', function () {
+    Route::get('register', function () {
         return view('auth.register', ['title' => 'Register']);
-    })->name('register.auth');
+    });
 
     Route::get('', function () {
         return view('index', [
@@ -91,21 +94,16 @@ Route::prefix('/')->group(function () {
     });
 
     Route::get('/tech', [TechnicianController::class, 'showAll'])->name('tech.show');
-    Route::get('/tech/{id_tech}', [TechnicianController::class, 'showTech'])->name('tech.detail');
+    Route::get('/tech/{name}', [TechnicianController::class, 'showTech'])->name('tech.detail');
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
-    Route::get('/statistik', [TechnicianController::class, 'statistik'])->name('statisik');
+    Route::get('/statistik/{username}', [UserController::class, 'statistik'])->name('statisik');
     //Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
     Route::get('/profile/{username}', [CustomerController::class, 'edit'])->name('profile');
     Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
     Route::put('/profile/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
-    Route::put('/tech//profile/{username}', [TechnicianController::class, 'updateCust'])->name('tech.update');
-    Route::get('/detailOrder', function () {
-        return view(
-            'teknisi.detailOrder',
-            ['title' => 'Order Detail']
-        );
-    })->name('teknisi.detailOrder');
+    Route::put('/tech/profile/{username}', [TechnicianController::class, 'updateTech'])->name('tech.update');
+    Route::get('/detail-transaksi/{username}/{trans_id}', [TransactionController::class, 'detailOrder'])->name('detail.transaksi');
 });

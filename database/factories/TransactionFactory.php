@@ -18,7 +18,7 @@ class TransactionFactory extends Factory {
     public function definition() {
         return [
             'level' => $this->faker->randomElement(['Ringan', 'Sedang', 'Berat']),
-            'desc' => $this->faker->sentence(),
+            'desc' => $this->faker->sentences(4, true),
             'price' => $this->faker->randomFloat(2, 30000, 800000),
             'status' => $this->faker->randomElement(['Order', 'Pickup', 'On Service', 'Complete', 'Failed']),
             'rating' => $this->faker->randomFloat(2, 1, 5),

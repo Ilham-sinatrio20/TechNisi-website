@@ -65,6 +65,9 @@
     }
 
 </style>
+@if(request()->routeIs('profile.tech'))
+<form action="{{ route('tech.update', Auth::user()->username) }}" method="POST" enctype="multipart/form-data">
+@endif
 <form action="{{ route('cust.update', Auth::user()->username) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
@@ -91,7 +94,7 @@
                         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Detail</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -144,26 +147,34 @@
                                 </tr>
                         </table>
                     </div>
+                   @if(request()->routeIs('profile.tech'))
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                         <table class="table table-hover table-sm table-properties">
                             <tr>
-                                <th>email</th>
-                                <td></td>
+                                <th>Spesialisasi</th>
+                                <td>{{ $users->category }}</td>
                             </tr>
                             <tr>
-                                <th>email verified</th>
-                                <td></td>
+                                <th>Sertifikasi</th>
+                                <td><input type="text" class="text-decoration-none border-0 w-50 @error('certification') is-invalid @enderror" id="certification" name="certification" value="{{ old('certification', $users->certification) }}"></td>
+                                @error('certification')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </tr>
                             <tr>
-                                <th>phone number</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>phone number verified</th>
-                                <td></td>
+                                <th>Deskripsi</th>
+                                <td><input type="text" class="text-decoration-none border-0 w-50 @error('desc') is-invalid @enderror" id="desc" name="desc" value="{{ old('desc', $users->desc) }}"></td>
+                                @error('desc')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </tr>
                         </table>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

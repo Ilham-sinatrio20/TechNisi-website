@@ -98,7 +98,7 @@ class CustomerController extends Controller {
             if(request('oldImage')) {
                 Storage::delete(request('oldImage'));
             }
-            $cust['photos'] = $request->file('photos')->store('cust-images');
+            $cust['photos'] = $request->file('photos')->store('public/cust-images');
         }
         // if($request->hasFile('photos')){
         //     $path = 'assets/image/cust'.$cust->photos;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     @if(Route::is('inbox.show') || Route::is('inbox.index'))
-    <title>TechNisi | Inbox Page</title>
+        <title>TechNisi | Inbox Page</title>
     @endif
     <title>TechNisi | {{ $title }} Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -81,30 +81,33 @@
                                 <div class="navbar-nav ml-auto">
                                     <a href="/"
                                         class="nav-item nav-link {{ ($title == 'Home') ? 'active' : '' }}">Home</a>
-                                    <a href="about"
-                                        class="nav-item nav-link {{ ($title == 'About') ? 'active' : '' }}">Tentang</a>
-                                    <a href="service"
-                                        class="nav-item nav-link {{ ($title == 'Service') ? 'active' : '' }}">Servis</a>
                                     <a href="{{ route('tech.show') }}"
                                         class="nav-item nav-link {{ ($title == 'Teknisi') ? 'active' : '' }}">Teknisi</a>
+                                    <a href="service"
+                                        class="nav-item nav-link {{ ($title == 'Service') ? 'active' : '' }}">Servis</a>
                                     <a href="contact"
                                         class="nav-item nav-link {{ ($title == 'Contact') ? 'active' : '' }}">Contact</a>
-                                    <a href="notifikasi"
-                                        class="nav-item nav-link {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>    
+                                    <a href="about"
+                                        class="nav-item nav-link {{ ($title == 'About') ? 'active' : '' }}">Tentang</a>
                                     @guest
                                         @if (Route::has('login'))
                                         <a href={{ route('login.auth') }}
                                             class="nav-item nav-link {{ ($title == 'Login') ? 'active' : '' }}">Login</a>
                                         @endif
                                     @else
-                                    <a href="{{ route('teknisi.detailOrder') }}" class="nav-item nav-link">Order</a>
-                                    <a href="{{ route('statisik') }}" class="nav-item nav-link">Statistik</a>
                                     <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{
                                             Auth::user()->username }}</a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('profile', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @if (Auth::user()->id_role == 2)
+                                                <a href="{{ route('profile', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @else
+                                                <a href="{{ route('profile.tech', Auth::user()->username) }}" class="dropdown-item">Profile</a>
+                                            @endif
                                             <a href="{{ route('inbox.index') }}" class="dropdown-item">Chat</a>
+                                            <a href="notifikasi" class="dropdown-item {{ ($title == 'Notifikasi') ? 'active' : '' }}">Notifikasi</a>
+                                            <a href="{{ route('statisik', Auth::user()->username) }}" class="dropdown-item">Statistik</a>
+                                            {{-- <a href="{{ route('teknisi.detailOrder') }}" class="dropdown-item">Order</a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}

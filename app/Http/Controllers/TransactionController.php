@@ -2,12 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Customer;
+use App\Models\Technician;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransactionRequest;
 
 class TransactionController extends Controller {
+
+    public function detailOrder($username, $trans_id){
+        if(auth()->user()->id_role = 2) {
+            //$id_cust = Customer::where('user_id', '=', auth()->user()->id)->first();
+            $transaction = Transaction::select('trans_id', 'level', 'transaction.desc AS description', 'price', 'status', 'u.name AS cust_name', 'u.id',
+            'c.address AS alamat', 't.address AS tech_address', 'uc.name AS tech_name', 'uc.phone AS tech_phone', 'u.phone AS cust_phone', 'transaction.created_at AS dates')
+            ->join('technician AS t', 't.technician_id', 'transaction.id_technician')
+            ->join('users AS uc', 'uc.id', 't.user_id')
+            ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
+            ->join('users AS u', 'u.id', 'c.user_id')
+            ->where('trans_id', $trans_id)
+            ->where('uc.username', $username)
+            ->first();
+            return view('teknisi.detailOrder', [
+                'trans' => $transaction,
+                'title' => "Detail Order",
+            ]);
+        } else if (auth()->user()->id_role == 3) {
+            //$id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
+            $transaction = Transaction::select('trans_id', 'level', 'transaction.desc AS description', 'price', 'status', 'uc.name AS cust_name', 'ut.id',
+            't.address AS alamat', 't.address AS tech_address', 'ut.name AS tech_name', 'ut.phone AS tech_phone', 'uc.phone AS cust_phone', 'transaction.created_at AS dates')
+            ->join('technician AS t', 't.technician_id', 'transaction.id_technician')
+            ->join('users AS ut', 'ut.id', 't.user_id')
+            ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
+            ->join('users AS uc', 'uc.id', 'c.user_id')
+            ->where('trans_id', $trans_id)
+            ->where('ut.username', $username)
+            ->first();
+            return view('teknisi.detailOrder', [
+                'trans' => $transaction,
+                'title' => "Detail Order",
+            ]);
+        }
+    }
 
     public function createTrans(TransactionRequest $request){
         $request->validated();
@@ -33,9 +70,6 @@ class TransactionController extends Controller {
         ->join('users AS u2', 't.user_id', '=', 'u2.id')
         ->get();
 
-        // ->with('customer:cust_id,user_id')
-        // ->with('technician:technician_id,user_id')
-
         return response()->json(['data' => $data]);
     }
 
@@ -48,13 +82,6 @@ class TransactionController extends Controller {
         ->join('users AS u', 'c.user_id', '=', 'u.id')
         ->join('users AS u2', 't.user_id', '=', 'u2.id')
         ->where('trans_id', $id)->first();
-
-        // $data = Transaction::select('trans_id', 'level',
-        // 'desc', 'price', 'status', 'customer_id', 'id_technician')
-        // ->with('customer:cust_id,user_id')
-        // ->with('technician:technician_id,user_id')
-        // ->where('trans_id', $id)->first();
-
         return response()->json(['data' => $data]);
     }
 
@@ -67,12 +94,6 @@ class TransactionController extends Controller {
         ->join('users AS u', 'c.user_id', '=', 'u.id')
         ->join('users AS u2', 't.user_id', '=', 'u2.id')
         ->where('id_technician', $id)->get();
-
-        // $data = Transaction::select('trans_id', 'level',
-        // 'desc', 'price', 'status', 'customer_id', 'id_technician')
-        // ->with('customer:cust_id,user_id')
-        // ->with('technician:technician_id,user_id')
-        // ->where('trans_id', $id)->first();
 
         return response()->json(['data' => $data]);
     }

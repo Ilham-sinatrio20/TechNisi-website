@@ -6,18 +6,18 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-6">
                             <div class="about-img">
-                                <img src="img/about.jpg" alt="Image">
+                                <img src="img/tentang.png" alt="Image">
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
                             <div class="about-text">
                                 <h2><span>2</span> Years Experience</h2>
                                 <p>
-                                    Aplikasi Teknisi adalah aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi. Aplikasi ini dibuat berbasis website dan menggunakan desain ui/ux yang mudah digunakan.
+                                    Aplikasi Teknisi adalah aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi. Aplikasi ini dibuat berbasis website dan mengutamakan user friendly.
 
                                 </p>
                                 <p>
-                                    Fitur-fitur yang terdapat pada aplikasi ini antara lain customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu, dapat mengirimkan pesan kepada teknisi.
+                                    Fitur yang terdapat pada aplikasi ini yaitu customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu, serta dapat mengirimkan pesan kepada teknisi.
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="service-item">
-                                <img src="img/service-2.jpg" alt="Service">
+                                <img src="img/servis-2.jpg" alt="Service">
                                 <h3>Servis Kulkas</h3>
                                 <p>
                                     Berbagai merk kulkas dapat diperbaiki
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="service-item">
-                                <img src="img/service-4.jpg" alt="Service">
+                                <img src="img/servis-4.jpg" alt="Service">
                                 <h3>Servis TV</h3>
                                 <p>
                                     TV Tabung dan TV LED dapat diperbaiki
@@ -99,7 +99,7 @@
                         <div class="col-md-7">
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-1.jpg" alt="Feature">
+                                    <img src="img/fitur-1.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Layanan Terbaik</h3>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-2.jpg" alt="Feature">
+                                    <img src="img/fitur-2.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Harga Terjangkau</h3>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="row align-items-center feature-item">
                                 <div class="col-5">
-                                    <img src="img/feature-3.jpg" alt="Feature">
+                                    <img src="img/fitur-3.png" alt="Feature">
                                 </div>
                                 <div class="col-7">
                                     <h3>Layanan Cepat & Terbaik</h3>
