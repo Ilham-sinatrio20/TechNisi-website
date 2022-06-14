@@ -7,7 +7,7 @@
             <div class="hero row align-items-center">
                 <center>
                     <div class="container col-8">
-                        <div class="row d-flex justify-content-center rounded">
+                        <div class="row d-flex justify-content-center rounded shadow-lg p-0">
                             <div class="col-6 p-0 bg-white">
                                 <img src="/img/e-wallet.jpg" class="mx-auto img-fluid d-block rounded-0" width="100%"
                                     alt="Transaction Illustration" />
