@@ -8,6 +8,7 @@ use App\Models\Technician;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,11 +32,11 @@ class UserController extends Controller {
 
     public function statistik() {
         if(auth()->user()->id_role == 2) {
-            $id_cust = Customer::where('user_id', '=', auth()->id())->first();
+            $id_cust = Customer::select('cust_id AS cust_id', 'user_id')->where('user_id', '=', Auth::user()->id)->first();
             $dataseluruh = Transaction::where('customer_id', '=', $id_cust->cust_id)->orderBy('level', 'asc')->get();
-            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Ringan%')->get();
-            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Sedang%')->get();
-            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'LIKE', '%Berat%')->get();
+            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Ringan')->get();
+            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Sedang')->get();
+            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Berat')->get();
             return view(
                 'statistik',
                 [
@@ -47,7 +48,7 @@ class UserController extends Controller {
                 ]
             );
         } else if (auth()->user()->id_role == 3) {
-            $id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
+            $id_tech = Technician::where('user_id', '=', Auth::user()->id)->first();
             $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
             $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
             $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();

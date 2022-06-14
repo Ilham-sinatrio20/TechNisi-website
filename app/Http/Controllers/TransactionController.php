@@ -7,7 +7,11 @@ use App\Models\Customer;
 use App\Models\Technician;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Exists;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\TransactionRequest;
 
 class TransactionController extends Controller {
@@ -22,7 +26,6 @@ class TransactionController extends Controller {
             ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
             ->join('users AS u', 'u.id', 'c.user_id')
             ->where('trans_id', $trans_id)
-            ->where('uc.username', $username)
             ->first();
             return view('teknisi.detailOrder', [
                 'trans' => $transaction,
@@ -37,7 +40,6 @@ class TransactionController extends Controller {
             ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
             ->join('users AS uc', 'uc.id', 'c.user_id')
             ->where('trans_id', $trans_id)
-            ->where('ut.username', $username)
             ->first();
             return view('teknisi.detailOrder', [
                 'trans' => $transaction,
@@ -46,18 +48,38 @@ class TransactionController extends Controller {
         }
     }
 
+    public function setOrder(Request $request) {
+        $request->validate([
+            'id_tech' => ['required', Rule::exists('technician','technician_id')],
+        ]);
+        $data = Customer::select('cust_id', 'user_id')->where('user_id', auth()->user()->id)->first();
+        $tech = Technician::select('technician_id', 'u.name AS tech_name', 'u.id',)
+        ->join('users AS u', 'u.id', 'technician.user_id')
+        ->where('technician_id', $request->id_tech)
+        ->first();
+
+        return view('form-transaction', [
+            'tech' => $tech,
+            'data' => $data,
+            'title' => 'Transaksi Form'
+        ]);
+    }
+
     public function createTrans(TransactionRequest $request){
         $request->validated();
         $transaction = new Transaction;
         $transaction->customer_id = $request->customer_id;
         $transaction->id_technician = $request->id_technician;
         $transaction->level = $request->level;
-        $transaction->price = $request->price;
+        //$transaction->price = $request->price;
         $transaction->status = 'Order';
         $transaction->desc = $request->desc;
         $transaction->save();
-
-        return response()->json(['message' => 'Successfully create transaction']);
+        Alert::success('Success', 'Transaksi Sukses');
+        return redirect()->route('statisik', [
+            'title' => 'Statisik Customer',
+            'username' => Auth::user()->username
+        ]);
     }
 
     public function showAll(){
@@ -82,6 +104,7 @@ class TransactionController extends Controller {
         ->join('users AS u', 'c.user_id', '=', 'u.id')
         ->join('users AS u2', 't.user_id', '=', 'u2.id')
         ->where('trans_id', $id)->first();
+
         return response()->json(['data' => $data]);
     }
 

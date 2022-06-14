@@ -75,7 +75,11 @@
                     <div class="row">
                         <div class="col-lg-11">
                             @if(Auth::user()->id_role = 2)
-                                <a href="{{ route('create.trans') }}" class="btn btn-success d-block">Pesan Sekarang</a>
+                            <form action="{{ route('transaction.form') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_tech" id="id_tech" value="{{ $data->technician_id }}">
+                                <button type="submit" class="btn btn-success d-block w-100">Pesan Sekarang</button>
+                            </form>
                             @elseif (Auth::user()->id_role = 3)
                                 <a href="#" class="btn btn-success d-block disabled">Anda Tidak Bisa Memesan Karena Sesama Teknisi</a>
                             @else

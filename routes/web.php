@@ -70,16 +70,6 @@ Route::prefix('/')->group(function () {
             'title' => 'Teknisi'
         ]);
     });
-    Route::get('form-transc1', function () {
-        return view('transactionForm', [
-            'title' => 'Transaksi Form',
-        ]);
-    });
-    Route::get('form-transc', function () {
-        return view('transactionForm1', [
-            'title' => 'Transaksi Form',
-        ]);
-    });
 
     // Route::get('profile', function () {
     //     return view('profile', [
@@ -100,6 +90,10 @@ Route::prefix('/')->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
     Route::get('/statistik/{username}', [UserController::class, 'statistik'])->name('statisik');
+
+    Route::post('transaction/', [TransactionController::class, 'setOrder'])->name('transaction.form');
+    Route::post('transaction/create', [TransactionController::class, 'createTrans'])->name('transaction.create');
+
     //Route::get('/profile', [TechnicianController::class, 'myProfile'])->name('profile');
     Route::get('/profile/{username}', [CustomerController::class, 'edit'])->name('profile');
     Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
