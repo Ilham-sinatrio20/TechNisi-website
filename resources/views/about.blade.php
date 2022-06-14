@@ -8,7 +8,7 @@
                             <h2>Tentang Kami</h2>
                         </div>
                         <div class="col-12">
-                            <a href="">Home</a>
+                            <a href="/">Home</a>
                             <a href="">Tentang Kami</a>
                         </div>
                     </div>
