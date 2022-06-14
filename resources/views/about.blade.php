@@ -30,11 +30,11 @@
                             <div class="about-text">
                                 <h2><span>2</span> Years Experience</h2>
                                 <p>
-                                    Aplikasi Teknisi merupakan aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi berbagai bidang. Aplikasi ini dibuat berbasis website dengan menggunakan desain ui/ux yang mudah digunakan.
+                                    Aplikasi Teknisi merupakan aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi berbagai bidang. Aplikasi ini dibuat berbasis website dengan mengutamakan user friendly.
 
                                 </p>
                                 <p>
-                                    Fitur-fitur yang terdapat pada aplikasi ini antara lain customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu dan dapat mengirimkan pesan kepada teknisi.
+                                Fitur yang terdapat pada aplikasi ini yaitu customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu, serta dapat mengirimkan pesan kepada teknisi.
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
