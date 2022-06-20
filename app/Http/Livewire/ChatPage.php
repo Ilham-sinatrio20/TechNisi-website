@@ -95,9 +95,9 @@ class ChatPage extends Component {
         $current = User::find($receiver);
 
         if($ussr == 1){
-            $get_messages = User::where('id', '!=', $user)->get();
+            $get_messages = User::where('id', '!=', $user)->orderBy('name', 'ASC')->paginate(5);
         } else if($ussr == 2 || $ussr == 3){
-            $users = User::where('id', '!=', $user)->where('id_role', '!=', $ussr)->where('id_role', '!=', 1)->get();
+            $users = User::where('id', '!=', $user)->where('id_role', '!=', $ussr)->where('id_role', '!=', 1)->orderBy('name', 'ASC')->paginate(5);
         }
         // get all users
 

@@ -53,7 +53,7 @@
                             </div>
                         @endforeach
                     </div>
-                     <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end">
                         {{ $data->links() }}
                     </div>
                     {{-- <div class="row">
