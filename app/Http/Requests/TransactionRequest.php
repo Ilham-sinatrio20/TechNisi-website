@@ -36,7 +36,7 @@ class TransactionRequest extends FormRequest {
             case 'PUT': {
                 return [
                     'level' => 'sometimes|string',
-                    'price' => 'required|numeric',
+                    'price' => 'required|integer',
                     'status' => 'required|string',
                     'desc' => 'sometimes|string',
                 ];

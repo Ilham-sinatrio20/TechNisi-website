@@ -33,10 +33,10 @@ class UserController extends Controller {
     public function statistik() {
         if(auth()->user()->id_role == 2) {
             $id_cust = Customer::select('cust_id AS cust_id', 'user_id')->where('user_id', '=', Auth::user()->id)->first();
-            $dataseluruh = Transaction::where('customer_id', '=', $id_cust->cust_id)->orderBy('level', 'asc')->get();
-            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Ringan')->get();
-            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Sedang')->get();
-            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Berat')->get();
+            $dataseluruh = Transaction::where('customer_id', '=', $id_cust->cust_id)->orderBy('created_at', 'desc')->get();
+            $dataringan = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Ringan')->orderBy('created_at', 'desc')->get();
+            $datasedang = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Sedang')->orderBy('created_at', 'desc')->get();
+            $databerat = Transaction::where('customer_id', '=', $id_cust->cust_id)->where('level', 'Berat')->orderBy('created_at', 'desc')->get();
             return view(
                 'statistik',
                 [
@@ -49,10 +49,10 @@ class UserController extends Controller {
             );
         } else if (auth()->user()->id_role == 3) {
             $id_tech = Technician::where('user_id', '=', Auth::user()->id)->first();
-            $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('level', 'asc')->get();
-            $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->get();
-            $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->get();
-            $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->get();
+            $dataseluruh = Transaction::where('id_technician', '=', $id_tech->technician_id)->orderBy('created_at', 'desc')->get();
+            $dataringan = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Ringan')->orderBy('created_at', 'desc')->get();
+            $datasedang = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'Sedang')->orderBy('created_at', 'desc')->get();
+            $databerat = Transaction::where('id_technician', '=', $id_tech->technician_id)->where('level', '=', 'berat')->orderBy('created_at', 'desc')->get();
             return view(
                 'statistik',
                 [

@@ -99,5 +99,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tech/profile/{username}', [TechnicianController::class, 'edit'])->name('profile.tech');
     Route::put('/profile/{username}', [CustomerController::class, 'updateCust'])->name('cust.update');
     Route::put('/tech/profile/{username}', [TechnicianController::class, 'updateTech'])->name('tech.update');
+
     Route::get('/detail-transaksi/{username}/{trans_id}', [TransactionController::class, 'detailOrder'])->name('detail.transaksi');
+    Route::get('/detail-transaksi/{username}/{trans_id}/update', [TransactionController::class, 'updateOrder'])->name('edit.transaksi');
+    Route::put('/detail-transaksi/{username}/{trans_id}/update', [TransactionController::class, 'updateTrans'])->name('update.transaksi');
+
 });
