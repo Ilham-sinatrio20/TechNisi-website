@@ -30,7 +30,7 @@
                             <div class="about-text">
                                 <h2><span>2</span> Years Experience</h2>
                                 <p>
-                                    Aplikasi Teknisi merupakan aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi berbagai bidang. Aplikasi ini dibuat berbasis website dengan mengutamakan user friendly.
+                                    Aplikasi TechNisi merupakan aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi berbagai bidang dengan tidak perlu keluar rumah. Aplikasi ini dibuat berbasis website dengan mengutamakan user friendly.
 
                                 </p>
                                 <p>
