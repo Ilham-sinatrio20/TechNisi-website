@@ -12,11 +12,11 @@
                         <div class="col-lg-7 col-md-6">
                             <div class="about-text">
                                 <h2><span>2</span> Years Experience</h2>
-                                <p>
-                                    Aplikasi Teknisi adalah aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi. Aplikasi ini dibuat berbasis website dan mengutamakan user friendly.
+                                <p align="justify">
+                                    TechNisi adalah website yang memberikan kemudahan masyarakat dalam mencari teknisi. Aplikasi ini dibuat berbasis website dan mengutamakan user friendly.
 
                                 </p>
-                                <p>
+                                <p align="justify">
                                     Fitur yang terdapat pada aplikasi ini yaitu customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu, serta dapat mengirimkan pesan kepada teknisi.
                                 </p>
                                 <a class="btn" href="">Learn More</a>
@@ -90,7 +90,7 @@
                                 <p>Mengapa Memilih Kami</p>
                                 <h2>Teknisi Ahli</h2>
                             </div>
-                            <p>
+                            <p align="justify">
                                 Aplikasi Technisi dapat membantu user yang mempunyai masalah teknisi di rumah, di kantor yang tidak sempat membawa ke tempat service.
                                 Disini juga terdapat ahli-ahli teknisi sesuai bidangnya yang sudah mempunyai sertifikat khusus.
                             </p>

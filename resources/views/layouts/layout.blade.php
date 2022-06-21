@@ -148,9 +148,10 @@
                                 <div class="control-group">
                                     <select class="custom-select">
                                         <option selected>Pilih Servis</option>
-                                        <option value="1">Servis Elektronik</option>
-                                        <option value="2">Servis Perabotan</option>
-                                        <option value="3">Servis Laptop</option>
+                                        <option value="1">Elektronik</option>
+                                        <option value="2">Instalasi Listrik</option>
+                                        <option value="3">IT</option>
+                                        <option value="3">Mekanik</option>
                                     </select>
                                 </div>
                                 <textarea class="form-control" placeholder="Komentar"></textarea>
