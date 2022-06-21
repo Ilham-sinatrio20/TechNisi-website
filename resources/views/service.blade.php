@@ -29,7 +29,7 @@
                                 <img src="img/servis-1.jpg" alt="Service">
                                 <h3>Servis Laptop</h3>
                                 <p>
-                                    Layanan servis berbagai jenis laptop dan kerusakannya dapat dikerjakan.
+                                    Layanan Servis Berbagai Jenis Laptop
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -39,7 +39,7 @@
                                 <img src="img/servis-2.jpg" alt="Service">
                                 <h3>Servis Kulkas</h3>
                                 <p>
-                                    Layanan servis berbagai tipe kulkas dan kerusakannya dapat dikerjakan.
+                                    Layanan Servis Berbagai Jenis Kulkas
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -49,7 +49,7 @@
                                 <img src="img/servis-3.jpg" alt="Service">
                                 <h3>Servis AC</h3>
                                 <p>
-                                    Layanan servis berbagai merk AC dan kerusakannya dapat dikerjakan
+                                    Layanan Servis Berbagai Jenis AC
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -59,7 +59,7 @@
                                 <img src="img/servis-4.jpg" alt="Service">
                                 <h3>Servis TV</h3>
                                 <p>
-                                    Layanan servis berbagai jenis TV dan kerusakannya dapat dikerjakan. 
+                                    Layanan Servis Berbagai Jenis TV
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -77,9 +77,9 @@
                             <div class="section-header left">
                                 <p>Mengapa memilih Technisi ?</p>
                             </div>
-                            <p>
-                                Aplikasi Technisi dapat membantu user yang mempunyai masalah teknisi di rumah, di kantor yang tidak sempat membawa ke tempat service.
-                                Disini juga terdapat ahli-ahli teknisi sesuai bidangnya yang sudah mempunyai sertifikat khusus.
+                            <p align="justify">
+                            Website TechNisi dapat membantu pelanggan yang mempunyai masalah teknis barang atau alat di rumah maupun di kantor yang tidak sempat membawa ke tempat servis.
+                            TechNisi menyediakan ahli-ahli teknisi sesuai bidangnya yang sudah mempunyai sertifikat khusus.
                             </p>
                             <a class="btn" href="">Learn More</a>
                         </div>
@@ -91,7 +91,7 @@
                                 <div class="col-7">
                                     <h3>Teknisi Ahli</h3>
                                     <p>
-                                        Teknisi yang direkrut disini sudah menguasai teknologi di bidangnya. Mereka sudah mengetahui teori dan teknik untuk memperbaiki sesuatu sesuai bidangnya. Dan mereka juga sudah mempunyai sertifikat keahlian sebagai penunjang bahwa mereka benar-benar ahli dalam bidangnya.
+                                        Teknisi terpercaya dan ahli dalam servis perbaikan sesuai bidangnya.
                                     </p>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@
                                     <img src="img/fitur-2.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
-                                    <h3>Harga Standard</h3>
+                                    <h3>Harga Terjangkau</h3>
                                     <p>
-                                        Jasa servis dan ongkir yang diberikan standart dengan tidak membuat pelanggan kantong kering. 
+                                        Biaya servis murah dengan hasil servis yang maksimal. 
                                     </p>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                 <div class="col-7">
                                     <h3>Layanan Cepat & Terbaik</h3>
                                     <p>
-                                        Layanan yang diberikan juga cepat tetapi hasil juga sesuai dan memuaskan.
+                                        Layanan servis cepat dengan hasil memuaskan.
                                     </p>
                                 </div>
                             </div>
