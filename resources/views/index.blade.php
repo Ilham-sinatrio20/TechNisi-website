@@ -12,12 +12,12 @@
                         <div class="col-lg-7 col-md-6">
                             <div class="about-text">
                                 <h2><span>2</span> Years Experience</h2>
-                                <p>
-                                    Aplikasi Teknisi adalah aplikasi yang bertujuan memberikan kemudahan masyarakat dalam mencari teknisi. Aplikasi ini dibuat berbasis website dan mengutamakan user friendly.
+                                <p align="justify">
+                                    TechNisi adalah website yang memberikan kemudahan masyarakat dalam mencari teknisi. Melalui website ini pelanggan dapat memanggil teknisi kapan saja untuk menangani servis.
 
                                 </p>
-                                <p>
-                                    Fitur yang terdapat pada aplikasi ini yaitu customer dapat memanggil teknisi kapan saja dengan reservasi terlebih dahulu, serta dapat mengirimkan pesan kepada teknisi.
+                                <p align="justify">
+                                    Fitur yang terdapat pada website ini yaitu pelanggan dapat memanggil teknisi kapan saja dan melakukan reservasi untuk servis, serta terdapat fitur chat antara pelanggan dan teknisi.
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -40,7 +40,7 @@
                                 <img src="img/servis-1.jpg" alt="Service">
                                 <h3>Servis Laptop</h3>
                                 <p>
-                                    Berbagai jenis laptop dapat ditangani
+                                    Layanan Servis Berbagai Jenis Laptop
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -50,7 +50,7 @@
                                 <img src="img/servis-2.jpg" alt="Service">
                                 <h3>Servis Kulkas</h3>
                                 <p>
-                                    Berbagai merk kulkas dapat diperbaiki
+                                    Layanan Servis Berbagai Jenis Kulkas
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -60,7 +60,7 @@
                                 <img src="img/servis-3.jpg" alt="Service">
                                 <h3>Servis AC</h3>
                                 <p>
-                                    Jenis AC yang dapat ditangani bervariasi
+                                    Layanan Servis Berbagai Jenis AC
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -70,7 +70,7 @@
                                 <img src="img/servis-4.jpg" alt="Service">
                                 <h3>Servis TV</h3>
                                 <p>
-                                    TV Tabung dan TV LED dapat diperbaiki
+                                    Layanan Servis Berbagai Jenis TV
                                 </p>
                                 <a class="btn" href="">Learn More</a>
                             </div>
@@ -90,9 +90,9 @@
                                 <p>Mengapa Memilih Kami</p>
                                 <h2>Teknisi Ahli</h2>
                             </div>
-                            <p>
-                                Aplikasi Technisi dapat membantu user yang mempunyai masalah teknisi di rumah, di kantor yang tidak sempat membawa ke tempat service.
-                                Disini juga terdapat ahli-ahli teknisi sesuai bidangnya yang sudah mempunyai sertifikat khusus.
+                            <p align="justify">
+                                Website TechNisi dapat membantu pelanggan yang mempunyai masalah teknis barang atau alat di rumah maupun di kantor yang tidak sempat membawa ke tempat servis.
+                                TechNisi menyediakan ahli-ahli teknisi sesuai bidangnya yang sudah mempunyai sertifikat khusus.
                             </p>
                             <a class="btn" href="">Learn More</a>
                         </div>
@@ -102,9 +102,9 @@
                                     <img src="img/fitur-1.jpg" alt="Feature">
                                 </div>
                                 <div class="col-7">
-                                    <h3>Layanan Terbaik</h3>
+                                    <h3>Teknisi Ahli</h3>
                                     <p>
-                                        Pelayanan antara pelanggan dan teknisi dijamin memuaskan.
+                                        Teknisi terpercaya dan ahli dalam servis perbaikan sesuai bidangnya.
                                     </p>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="col-7">
                                     <h3>Harga Terjangkau</h3>
                                     <p>
-                                        Biaya untuk perbaikan sangat terjangkau bagi masyarakat.
+                                        Biaya servis murah dengan hasil servis yang maksimal. 
                                     </p>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                 <div class="col-7">
                                     <h3>Layanan Cepat & Terbaik</h3>
                                     <p>
-                                        Prses perbaikan dapat dilakukan dengan cepat dan hasil yang bagus.
+                                        Layanan servis cepat dengan hasil memuaskan.
                                     </p>
                                 </div>
                             </div>
