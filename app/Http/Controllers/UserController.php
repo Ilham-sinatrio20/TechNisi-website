@@ -67,5 +67,39 @@ class UserController extends Controller {
             return redirect()->route('index.home');
         }
     }
+
+    public function notification($username){
+        if(auth()->user()->id_role = 2) {
+            //$id_cust = Customer::where('user_id', '=', auth()->user()->id)->first();
+            $transaction = Transaction::select('trans_id', 'level', 'transaction.desc AS description', 'price', 'status', 'u.name AS cust_name', 'u.id',
+            'c.address AS alamat', 't.address AS tech_address', 'uc.name AS tech_name', 'uc.phone AS tech_phone', 'u.phone AS cust_phone', 'transaction.created_at AS dates')
+            ->join('technician AS t', 't.technician_id', 'transaction.id_technician')
+            ->join('users AS uc', 'uc.id', 't.user_id')
+            ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
+            ->join('users AS u', 'u.id', 'c.user_id')
+            ->where('uc.username', $username)
+            ->orderBy('transaction.created_at', 'desc')
+            ->limit(5);
+            return view('notifikasi', [
+                'trans' => $transaction,
+                'title' => "Detail Order",
+            ]);
+        } else if (auth()->user()->id_role == 3) {
+            //$id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
+            $transaction = Transaction::select('trans_id', 'level', 'transaction.desc AS description', 'price', 'status', 'uc.name AS cust_name', 'ut.id',
+            't.address AS alamat', 't.address AS tech_address', 'ut.name AS tech_name', 'ut.phone AS tech_phone', 'uc.phone AS cust_phone', 'transaction.created_at AS dates')
+            ->join('technician AS t', 't.technician_id', 'transaction.id_technician')
+            ->join('users AS ut', 'ut.id', 't.user_id')
+            ->join('customer AS c', 'c.cust_id', 'transaction.customer_id')
+            ->join('users AS uc', 'uc.id', 'c.user_id')
+            ->where('ut.username', $username)
+            ->orderBy('transaction.created_at', 'desc')
+            ->limit(5);
+            return view('notifikasi', [
+                'trans' => $transaction,
+                'title' => "Detail Order",
+            ]);
+        }
+    }
 }
 

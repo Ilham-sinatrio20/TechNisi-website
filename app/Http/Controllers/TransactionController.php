@@ -61,7 +61,7 @@ class TransactionController extends Controller {
             ->first();
             return view('teknisi.edit-detailOrder', [
                 'trans' => $transaction,
-                'title' => "Detail Order",
+                'title' => "Notifikasi",
             ]);
         } else if (auth()->user()->id_role == 3) {
             //$id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
@@ -75,7 +75,7 @@ class TransactionController extends Controller {
             ->first();
             return view('teknisi.edit-detailOrder', [
                 'trans' => $transaction,
-                'title' => "Detail Order",
+                'title' => "Notifikasi",
             ]);
         }
     }
