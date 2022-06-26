@@ -18,7 +18,6 @@ class SpecializationSeeder extends Seeder
             ['category' => 'Mesin'],
             ['category' => 'Software'],
             ['category' => 'Elektronik'],
-            ['category' => 'Repair'],
             ['category' => 'Furniture'],
         ];
         DB::table('specialization')->insert($specialization);

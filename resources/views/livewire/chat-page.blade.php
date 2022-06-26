@@ -163,8 +163,7 @@
             </div>
         </div>
     </div>
-    <div class="container d-flex justify-content-end mt-3 p-0 my-3">
-        {{ $users->links() }}
-    </div>
 </div>
-
+<div class="container d-flex justify-content-end mt-3 p-0 my-3">
+    {{ $users->links() }}
+</div>

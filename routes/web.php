@@ -88,6 +88,7 @@ Route::prefix('/')->group(function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    // Route::get('notifikasi/{username}', [UserController::class, 'notifikasi'])->name('notifikasi');
     Route::get('/inbox', [MessageController::class, 'index'])->name('inbox.index');
     Route::get('/statistik/{username}', [UserController::class, 'statistik'])->name('statisik');
 

@@ -28,9 +28,14 @@
                         <div class="col-12">
                             <ul id="portfolio-flters">
                                     <li data-filter="*" class="filter-active">Semua</li>
-                                @foreach ($spec as $category)
+                                    <li data-filter="*" class="">Mesin</li>
+                                    <li data-filter="*" class="">Software</li>
+                                    <li data-filter="*" class="">Elektronik</li>
+                                    <li data-filter="*" class="">Repair</li>
+                                    <li data-filter="*" class="">Furniture</li>
+                                {{-- @foreach ($spec as $category)
                                     <li value="{{ $category->category }}">{{ $category->category }}</li>
-                                @endforeach
+                                @endforeach --}}
                             </ul>
                         </div>
                     </div>
@@ -47,7 +52,9 @@
                                         {{-- <img src="img/portfolio-3.jpg" alt="Portfolio Image"> --}}
                                         <a href="img/portfolio-3.jpg" class="link-preview" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                         <a href="#" class="link-details"><i class="fa fa-link"></i></a>
-                                        <a class="portfolio-title" href="{{ route('tech.detail', $tech->name) }}">{{ $tech->name }}</a>
+                                        <a class="portfolio-title" href="{{ route('tech.detail', $tech->name) }}">{{ $tech->name }} </br>
+                                            Bidang {{ $tech->category }}
+                                        </a>
                                     </figure>
                                 </div>
                             </div>

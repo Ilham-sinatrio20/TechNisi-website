@@ -100,16 +100,16 @@ class TechnicianController extends Controller {
     public function showAll() {
         $spec = Specialization::select('id_specialist', 'category')->get();
         $data = Technician::select(
-            'technician_id', 'u.name AS name', 'u.id'
+            'technician_id', 'u.name AS name', 'u.id', 's.id_specialist', 's.category AS category'
         )
         ->join('users AS u', 'technician.user_id', '=', 'u.id')
+        ->join('specialization AS s', 'technician.specialist_id', '=', 's.id_specialist')
         ->orderBy('u.name', 'asc')
-        ->where('u.id_role', 3)
         ->paginate(6);
 
         return view('teknisi.list-tech', [
             'data' => $data,
-            'spec' => $spec,
+            // 'spec' => $spec,
             'title' => 'Teknisi'
         ]);
     }

@@ -81,8 +81,8 @@ class UserController extends Controller {
             ->orderBy('transaction.created_at', 'desc')
             ->limit(5);
             return view('notifikasi', [
-                'trans' => $transaction,
-                'title' => "Detail Order",
+                'notifikasi' => $transaction,
+                'title' => "Notifikasi",
             ]);
         } else if (auth()->user()->id_role == 3) {
             //$id_tech = Technician::where('user_id', '=', auth()->user()->id)->first();
@@ -96,8 +96,8 @@ class UserController extends Controller {
             ->orderBy('transaction.created_at', 'desc')
             ->limit(5);
             return view('notifikasi', [
-                'trans' => $transaction,
-                'title' => "Detail Order",
+                'notifikasi' => $transaction,
+                'title' => "Notifikasi",
             ]);
         }
     }

@@ -19,7 +19,7 @@ class TechnicianFactory extends Factory
     public function definition()
     {
         return [
-            'specialist_id' => rand(1, Specialization::count()),
+            'specialist_id' => $this->faker->randomElement([1, 2, 3, 4]),
             // 'user_id' => rand(1, User::count()),
             'user_id' => User::factory()->create()->id,
             'desc' => $this->faker->text,
